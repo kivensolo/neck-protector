@@ -1,6 +1,5 @@
 plugins {
-    id 'java'
-    id 'org.jetbrains.intellij' version '0.4.8'
+    id 'org.jetbrains.intellij' version '0.4.7'
 }
 
 group 'com.zeke.wong'
@@ -18,8 +17,10 @@ dependencies {
 }
 
 intellij {
-    version '2018.3.3'
+    version 'IC-2017.1'
+    updateSinceUntilBuild false
 }
+
 patchPluginXml {
     changeNotes """
       <h1>Release note of plugin .......</h1><br>
