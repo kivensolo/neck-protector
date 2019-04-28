@@ -8,24 +8,40 @@
       <h1>Neck Protector</h1>
       <br>
       <p><b>A warm plugin that reminds you to relax</b></p>
-      <p><b>一款可以定时提醒Coder休息放松的插件，动动脖子、放松肩膀，远离肩颈困扰 ：）</b>
+      <p> <b>一款可以定时提醒你休息放松的插件，动动脖子、放松肩膀，远离肩颈困扰 ：）</b>
       <br>
        支持版本 >= 2016.1 (Branch number: 145 )
-      </p>
-    ]]></description>
+      </p><br>
+      GitHub: <a href="https://github.com/kivensolo/neck-protector">https://github.com/kivensolo/neck-protector</a>
+     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="145"/>
+
+    <!--应用级别组件-->
+    <application-components>
+        <component>
+            <interface-class>com.zeke.cd.notify.INotifyComponent</interface-class>
+
+            <implementation-class>com.zeke.cd.notify.BaseNotifyComponent</implementation-class>
+        </component>
+    </application-components>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
     -->
+    <depends>com.intellij.modules.lang</depends>
 
     <!--自定义扩展，暂时用不到 -->
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <!--<applicationConfigurable groupId="other" instance="SearchableConfigurable impl"/>
+
+        href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html-->
+        <applicationService serviceInterface="com.zeke.cd.config.IConfigService"
+                            serviceImplementation="com.zeke.cd.config.ConfigServiceImpl"/>
     </extensions>
 
     <actions>
@@ -36,7 +52,7 @@
             <action id="NeckProtector.HelloACtion" class="com.zeke.cd.demo.HelloAction"
                     text="hello" description="Says hello"/>
 
-            <action id="NeckProtector.ConfigAction" class="ConfigAction" text="NeckConfig">
+            <action id="NeckProtector.ConfigAction" class="com.zeke.cd.ConfigAction" text="NeckConfig">
                 <keyboard-shortcut keymap="$default" first-keystroke="shift P"/>
             </action>
         </group>
