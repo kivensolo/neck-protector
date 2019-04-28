@@ -1,0 +1,44 @@
+<idea-plugin>
+    <id>com.zeke.wong.neck-protect</id>
+    <name>NeckProtector</name>
+    <version>1.0</version>
+    <vendor email="760553478@qq.com" url="http://www.starcor.com">Starcor</vendor>
+
+    <description><![CDATA[
+      <h1>Neck Protector</h1>
+      <br>
+      <p><b>A warm plugin that reminds you to relax</b></p>
+      <p><b>一款可以定时提醒Coder休息放松的插件，动动脖子、放松肩膀，远离肩颈困扰 ：）</b>
+      <br>
+       支持版本 >= 2016.1 (Branch number: 145 )
+      </p>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="145"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <!--自定义扩展，暂时用不到 -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="KingPlugin.PluginSet" text="ZeKePlugins" description="the plugin set by zekeWong">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+
+            <action id="NeckProtector.HelloACtion" class="com.zeke.cd.demo.HelloAction"
+                    text="hello" description="Says hello"/>
+
+            <action id="NeckProtector.ConfigAction" class="ConfigAction" text="NeckConfig">
+                <keyboard-shortcut keymap="$default" first-keystroke="shift P"/>
+            </action>
+        </group>
+    </actions>
+</idea-plugin>

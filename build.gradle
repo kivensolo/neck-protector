@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.8'
+}
+
+group 'com.zeke.wong'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+intellij {
+    version '2018.3.3'
+}
+patchPluginXml {
+    changeNotes """
+      <h1>Release note of plugin .......</h1><br>
+      <ul>
+        <li>v1.0 init</li>
+      </ul>
+      """
+}
