@@ -1,4 +1,4 @@
-package com.zeke.cd.notify;
+package com.zeke.cd;
 
 /**
  * 基础定时提醒组件
@@ -9,5 +9,5 @@ package com.zeke.cd.notify;
  * @version 1.0
  * @since 2019-04-28
  */
-public interface INotifyComponent {
+public interface IApplicationComponent {
 }

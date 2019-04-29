@@ -1,4 +1,4 @@
-package com.zeke.cd;
+package com.zeke.cd.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;

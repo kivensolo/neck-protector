@@ -39,7 +39,7 @@ public class ConfigServiceImpl implements IConfigService {
      * <p>调用此方法，会将配置数据持久化至 {@code neckProtector.xml} 配置文件中</p>
      */
     @Override
-    public void setState(@NotNull ConfigState state) {
+    public void updateState(@NotNull ConfigState state) {
         this.configState = state;
     }
 

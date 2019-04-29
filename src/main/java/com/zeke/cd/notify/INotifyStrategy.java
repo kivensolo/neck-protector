@@ -2,9 +2,10 @@ package com.zeke.cd.notify;
 
 import com.intellij.notification.*;
 import com.intellij.openapi.diagnostic.Logger;
+import com.zeke.cd.actions.OpenImageAction;
 import com.zeke.cd.config.ConfigState;
-import com.zeke.cd.config.GlobalSettings;
 import com.zeke.cd.config.IConfigService;
+import com.zeke.cd.settings.GlobalSettings;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -41,9 +42,9 @@ public interface INotifyStrategy {
     }
 
     /**
-     * 使用不同策略打开图片
+     * 消息通知回调方法
      */
-    void remind();
+    void msgNotify();
 
     /**
      * 直接打开图片
@@ -56,7 +57,7 @@ public interface INotifyStrategy {
          * {@inheritDoc}
          */
         @Override
-        public void remind() {
+        public void msgNotify() {
             //DataManager.getInstance().getDataContextFromFocus()
             //        .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
             //        .doWhenRejected((Consumer<String>) LOG::error);
@@ -74,16 +75,19 @@ public interface INotifyStrategy {
          * {@inheritDoc}
          */
         @Override
-        public void remind() {
+        public void msgNotify() {
             String displayId = "Plugins " + GlobalSettings.PLUGIN_NAME;
             NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
             NotificationGroup notificationGroup = new NotificationGroup(displayId, displayType, true);
 
             ConfigState cs = IConfigService.getInstance().getState();
-            Notification notification = obtainNotification(notificationGroup, cs.getNotifyTitle(),
-                    cs.getNotifyContent(),NotificationType.INFORMATION, null);
-            //OpenImageAction openImageAction = new OpenImageAction(configState.getNotifyAction(), notification);
-            //notification.addAction(openImageAction);
+            Notification notification = obtainNotification(notificationGroup,
+                                                           cs.getNotifyTitle(),
+                                                           cs.getNotifyContent(),
+                                                           NotificationType.INFORMATION,
+                                                           null);
+            OpenImageAction openImageAction = new OpenImageAction(cs.getNotifyAction(), notification);
+            notification.addAction(openImageAction);
             Notifications.Bus.notify(notification);
             LOG.info("notify an info message");
         }

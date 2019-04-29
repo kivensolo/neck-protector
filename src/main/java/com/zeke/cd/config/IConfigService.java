@@ -32,5 +32,5 @@ public interface IConfigService extends PersistentStateComponent<ConfigState> {
      * 修改插件配置
      * @param state 将被保存的新配置对象
      */
-    void setState(@NotNull ConfigState state);
+    void updateState(@NotNull ConfigState state);
 }

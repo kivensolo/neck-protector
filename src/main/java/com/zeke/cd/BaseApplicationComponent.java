@@ -1,10 +1,11 @@
-package com.zeke.cd.notify;
+package com.zeke.cd;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
+import com.zeke.cd.notify.NotifyTask;
 
 /**
- * 定时提醒组件接口
+ * Application组件接口
  *
  * <p>依赖于 Intellij Platform 组件实现</p>
  *
@@ -12,10 +13,10 @@ import com.intellij.openapi.diagnostic.Logger;
  * @version 1.0
  * @since 2019-04-28 21:35
  */
-public class BaseNotifyComponent implements INotifyComponent {
-    public BaseNotifyComponent() {
+public class BaseApplicationComponent implements IApplicationComponent {
+    public BaseApplicationComponent() {
         ApplicationManager.getApplication().invokeLater(() -> {
-            Logger LOG = Logger.getInstance(BaseNotifyComponent.class);
+            Logger LOG = Logger.getInstance(BaseApplicationComponent.class);
             LOG.info("=== Start init Plugin Neck-Protector ===");
             NotifyTask.init();
             LOG.info("init sucessful.");

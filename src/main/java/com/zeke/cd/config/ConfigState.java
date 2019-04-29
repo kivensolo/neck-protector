@@ -1,6 +1,7 @@
 package com.zeke.cd.config;
 
 import com.intellij.util.xmlb.annotations.OptionTag;
+import com.zeke.cd.notify.NotifyConfig;
 
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -57,21 +58,20 @@ public class ConfigState {
     /**
      * 默认配置对象
      *
-     * <p>在 {@link IConfigService#setState(ConfigState)} 时，新配置对象会与默认配置对象作比较，
+     * <p>在 {@link IConfigService#updateState(ConfigState)} 时，新配置对象会与默认配置对象作比较，
      * IDEA 会保存有差异的字段至 {@link ConfigServiceImpl} 指定的 {@code neckProtector.xml} 配置文件中</p>
      *
      * @see IConfigService#getState()
-     * @see IConfigService#setState(ConfigState)
+     * @see IConfigService#updateState(ConfigState)
      */
     public ConfigState() {
         // 第一次开启插件时，应该使用默认配置
-        this.remindType = DefaultConfig.REMIND_TYPE;
-        //this.remindImageUrl = DefaultConfig.REMIND_IMAGE_URL;
-        this.remindImageUrl = "";//TODO 改为美图接口
-        this.periodMinutes = DefaultConfig.PERIOD_MINUTES;
-        this.notifyTitle = DefaultConfig.NOTIFY_TITLE;
-        this.notifyContent = DefaultConfig.NOTIFY_CONTENT;
-        this.notifyAction = DefaultConfig.NOTIFY_ACTION;
+        this.remindType = NotifyConfig.REMIND_TYPE;
+        this.remindImageUrl = NotifyConfig.DISPLAY_IMAGE_URL;
+        this.periodMinutes = NotifyConfig.PERIOD_MINUTES;
+        this.notifyTitle = NotifyConfig.NOTIFY_TITLE;
+        this.notifyContent = NotifyConfig.NOTIFY_CONTENT;
+        this.notifyAction = NotifyConfig.NOTIFY_ACTION;
     }
 
     @Override

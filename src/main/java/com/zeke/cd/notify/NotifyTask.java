@@ -3,6 +3,7 @@ package com.zeke.cd.notify;
 import com.intellij.concurrency.JobScheduler;
 import com.intellij.openapi.application.ApplicationManager;
 import com.zeke.cd.config.ConfigState;
+import com.zeke.cd.config.IConfigService;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class NotifyTask {
     private static final ThreadLocal<ScheduledFuture> SCHEDULED_FUTURE_CONTEXT = new ThreadLocal<>();
 
-    static void init(){
+    public static void init(){
         restart();
     }
 
@@ -25,9 +26,9 @@ public class NotifyTask {
      */
     public static void restart() {
         destroy();
-        //TODO 获取配置时间数据
+        ConfigState configState = IConfigService.getInstance().getState();
         ScheduledFuture scheduledFuture = JobScheduler.getScheduler().scheduleWithFixedDelay(new ToastRunnable(),
-                1, 1, TimeUnit.MINUTES);
+                configState.getPeriodMinutes(), configState.getPeriodMinutes(), TimeUnit.MINUTES);
         SCHEDULED_FUTURE_CONTEXT.set(scheduledFuture);
     }
 
@@ -48,10 +49,10 @@ public class NotifyTask {
     static class ToastRunnable implements Runnable{
         @Override
         public void run() {
-            //ConfigState configState = IConfigService.getInstance().getState();
-            ConfigState.RemindTypeEnum remindType = ConfigState.RemindTypeEnum.valueOf(1);
+            ConfigState configState = IConfigService.getInstance().getState();
+            ConfigState.RemindTypeEnum remindType = ConfigState.RemindTypeEnum.valueOf(configState.getRemindType());
             INotifyStrategy remindStrategy = INotifyStrategy.getRemindStrategy(remindType);
-            ApplicationManager.getApplication().invokeLater(remindStrategy::remind);
+            ApplicationManager.getApplication().invokeLater(remindStrategy::msgNotify);
         }
     }
 }

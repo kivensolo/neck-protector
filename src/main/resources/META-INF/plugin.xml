@@ -21,9 +21,9 @@
     <!--应用级别组件-->
     <application-components>
         <component>
-            <interface-class>com.zeke.cd.notify.INotifyComponent</interface-class>
+            <interface-class>com.zeke.cd.IApplicationComponent</interface-class>
 
-            <implementation-class>com.zeke.cd.notify.BaseNotifyComponent</implementation-class>
+            <implementation-class>com.zeke.cd.BaseApplicationComponent</implementation-class>
         </component>
     </application-components>
 
@@ -32,9 +32,9 @@
     </depends>-->
 
     <extensions defaultExtensionNs="com.intellij">
-        <!--<applicationConfigurable groupId="other" instance="SearchableConfigurable impl"/>
+        <applicationConfigurable groupId="other" instance="com.zeke.cd.settings.PluginSettingPage"/>
 
-        href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html-->
+        <!--href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html-->
         <applicationService serviceInterface="com.zeke.cd.config.IConfigService"
                             serviceImplementation="com.zeke.cd.config.ConfigServiceImpl"/>
     </extensions>
@@ -47,7 +47,7 @@
             <action id="NeckProtector.HelloACtion" class="com.zeke.cd.demo.HelloAction"
                     text="hello" description="Says hello"/>
 
-            <action id="NeckProtector.ConfigAction" class="com.zeke.cd.ConfigAction" text="NeckConfig">
+            <action id="NeckProtector.ConfigAction" class="com.zeke.cd.actions.ConfigAction" text="NeckConfig">
                 <keyboard-shortcut keymap="$default" first-keystroke="shift P"/>
             </action>
         </group>

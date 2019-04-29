@@ -1,4 +1,4 @@
-package com.zeke.cd.config;
+package com.zeke.cd.settings;
 
 /**
  * @author King.Z <br>
@@ -11,7 +11,7 @@ public class GlobalSettings {
      *
      * <p>与 {@code /META-INF/plugin.xml} 中 {@code <id>} 内容一致</p>
      */
-    String PLUGIN_ID = "com.zeke.wong.neck-protect";
+    public static final String PLUGIN_ID = "com.zeke.wong.neck-protect";
     /**
      * 插件名称
      */
