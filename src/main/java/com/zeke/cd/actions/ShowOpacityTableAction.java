@@ -1,5 +1,8 @@
-package com.zeke.cd.images;
+package com.zeke.cd.actions;
 
+import com.intellij.ide.DataManager;
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.diagnostic.Logger;
@@ -8,51 +11,38 @@ import com.intellij.openapi.fileEditor.impl.EditorWindow;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.zeke.cd.config.ConfigState;
-import com.zeke.cd.config.IConfigService;
-import com.zeke.cd.notify.INotifyStrategy;
+import com.intellij.util.Consumer;
+import com.zeke.cd.images.BaseImageManager;
 
 import javax.swing.*;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.function.Consumer;
 
 /**
- * 打开图片的具体实现
- *
- * @author King.Z
- * @version 1.0
- * @since 2019-04-29
+ * 显示十六进制透明度图片的Action
  */
-@SuppressWarnings("Duplicates")
-public class OpenImageConsumer implements Consumer<DataContext> {
-    private static final Logger LOG = Logger.getInstance(INotifyStrategy.class);
+public class ShowOpacityTableAction extends AnAction {
+    private static final Logger LOG = Logger.getInstance(ShowOpacityTableAction.class);
+    @Override
+    public void actionPerformed(AnActionEvent e) {
 
-    public OpenImageConsumer() {
+        DataManager.getInstance().getDataContextFromFocus()
+                .doWhenDone((Consumer<DataContext>) this::openHexOpacityPic)
+                .doWhenRejected((Consumer<String>) LOG::error);
+
     }
 
-    @Override
-    public void accept(DataContext dataContext) {
+    @SuppressWarnings("Duplicates")
+    private void openHexOpacityPic(DataContext dataContext) {
         // 1. 获取 IDEA 正在使用的 Project
         Project currentProject = dataContext.getData(PlatformDataKeys.PROJECT);
         if (currentProject == null) {
             LOG.warn("currentProject cannot be null");
             return;
         }
-
-        // 2. 获取即将用于展示的图片
-        ConfigState configState = IConfigService.getInstance().getState();
-        String imageUrlStr = configState.getRemindImageUrl();
-        URL imageUrl;
-        try {
-            imageUrl = new URL(imageUrlStr);
-        } catch (MalformedURLException e) {
-            LOG.error("parse the image URL \"" + imageUrlStr + "\" error", e);
-            return;
-        }
-        VirtualFile image = VfsUtil.findFileByURL(imageUrl);
+        URL picUrl = BaseImageManager.getInstance().getHexComparisonPicUrl();
+        VirtualFile image = VfsUtil.findFileByURL(picUrl);
         if (image == null) {
-            LOG.error("cannot find the image by URL: " + imageUrl.toString());
+            LOG.error("cannot find the image by URL: " + picUrl.toString());
             return;
         }
 
@@ -74,6 +64,6 @@ public class OpenImageConsumer implements Consumer<DataContext> {
                 fileEditorManager.openFileWithProviders(image, true, nextWindow);
             }
         }
-        LOG.info("image has been opened");
+        LOG.info("hex image has been opened");
     }
 }

@@ -9,7 +9,6 @@ import com.zeke.cd.settings.GlobalSettings;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.List;
 
@@ -53,12 +52,11 @@ public class BaseImageManager implements ImageManager {
     @Override
     @Nonnull
     public URL getImageUrl() {
-        //return mImageUrl;
-        try {
-            return URI.create("file:/F:/github/kviensolo/neck-protect/out/production/resources/images/iron_man.jpg").toURL();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        //try {
+        //    return URI.create("file:/F:/github/kviensolo/neck-protect/out/production/resources/images/iron_man.jpg").toURL();
+        //} catch (MalformedURLException e) {
+        //    e.printStackTrace();
+        //}
         return mImageUrl;
     }
 
@@ -68,18 +66,31 @@ public class BaseImageManager implements ImageManager {
      * <p>默认图片地址是 "jar:file://{@code ${pluginPath}}/neck-protector.jar!/images/iron_man.jpg"</p>
      */
     private URL getDefaultUrl() {
+        File pluginPath = getPluginFilePath();
+        return getPluginJarFileURL(pluginPath, "!/images/iron_man.jpg");
+    }
+
+    public URL getHexComparisonPicUrl() {
+        File pluginPath = getPluginFilePath();
+        return getPluginJarFileURL(pluginPath, "!/images/opacity-comparison-table/hex.png");
+    }
+
+    private File getPluginFilePath() {
         PluginId pluginId = PluginId.getId(GlobalSettings.PLUGIN_ID);
         IdeaPluginDescriptor plugin = PluginManager.getPlugin(pluginId);
         if (plugin == null) {
             LOG.error("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
             throw new NullPointerException("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
         }
-        File pluginPath = plugin.getPath();
+        return plugin.getPath();
+    }
+
+    private URL getPluginJarFileURL(File pluginFilePath, String subPath) {
         try {
-            return new URL("jar:" + pluginPath.toURI().toURL().toString() + "!/images/iron_man.jpg");
+            return new URL("jar:" + pluginFilePath.toURI().toURL().toString() + subPath);
         } catch (MalformedURLException e) {
-            LOG.error("fail to get the default imageUrl", e);
-            throw new RuntimeException("fail to get the default imageUrl", e);
+            LOG.error("fail to get the file Url", e);
+            throw new RuntimeException("fail to get file Url:", e);
         }
     }
 }

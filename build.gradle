@@ -27,7 +27,7 @@ tasks.withType(JavaCompile) {
 
 patchPluginXml {
     changeNotes """
-      <h1>Release note of plugin .......</h1><br>
+      <h1>Release note of plugin:</h1>
       <ul>
         <li>v1.0 init</li>
       </ul>

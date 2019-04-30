@@ -21,7 +21,7 @@ public class NotifyConfig {
     public static String DISPLAY_IMAGE_URL = BaseImageManager.getInstance().getImageUrl().toString();
 
     /** 默认提醒间隔时间 */
-    public static Integer PERIOD_MINUTES = (int) TimeUnit.MINUTES.toMinutes(1);
+    public static Integer PERIOD_MINUTES = (int) TimeUnit.HOURS.toMinutes(1);
 
     /** 默认通知文案的标题 */
     public static String NOTIFY_TITLE = "NeckProtector";
