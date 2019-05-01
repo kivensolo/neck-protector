@@ -1,4 +1,4 @@
-package com.zeke.cd.config;
+package com.zeke.cd.components;
 
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
@@ -6,7 +6,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * {@link IConfigService} 实现类
+ * {@link IConfigComponent} 实现类
  *
  * @author King.Z
  * @version 1.0
@@ -14,10 +14,10 @@ import org.jetbrains.annotations.NotNull;
  * @since 2019-04-28
  */
 @State(name = "neckProtector", storages = @Storage("neckProtector.xml"))
-public class ConfigServiceImpl implements IConfigService {
+public class ConfigComponentImpl implements IConfigComponent {
     private ConfigState configState;
 
-    public ConfigServiceImpl() {
+    public ConfigComponentImpl() {
         this.configState = new ConfigState();
     }
 

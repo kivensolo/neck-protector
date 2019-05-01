@@ -2,8 +2,8 @@ package com.zeke.cd.settings;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.options.SearchableConfigurable;
-import com.zeke.cd.config.ConfigState;
-import com.zeke.cd.config.IConfigService;
+import com.zeke.cd.components.ConfigState;
+import com.zeke.cd.components.IConfigComponent;
 import com.zeke.cd.notify.NotifyTask;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
@@ -83,14 +83,14 @@ public class PluginSettingPage implements SearchableConfigurable {
     @Override
     public void apply(){
         if (this.settingsView == null) return;
-        ConfigState configState = IConfigService.getInstance().getState();
+        ConfigState configState = IConfigComponent.getInstance().getState();
         configState.setRemindType(settingsView.getRemindTypeOption());
         configState.setRemindImageUrl(settingsView.getImageUrl());
         configState.setPeriodMinutes(settingsView.getPeriodMinutes());
         configState.setNotifyTitle(settingsView.getNotifyTitle());
         configState.setNotifyContent(settingsView.getNotifyContent());
         configState.setNotifyAction(settingsView.getNotifyAction());
-        IConfigService.getInstance().updateState(configState);
+        IConfigComponent.getInstance().updateState(configState);
         LOG.info("apply and save user setting");
 
         NotifyTask.restart();
@@ -104,7 +104,7 @@ public class PluginSettingPage implements SearchableConfigurable {
     public void reset() {
         if (settingsView == null) return;
 
-        ConfigState configState = IConfigService.getInstance().getState();
+        ConfigState configState = IConfigComponent.getInstance().getState();
         settingsView.setRemindTypeOption(configState.getRemindType());
         settingsView.setImageUrl(configState.getRemindImageUrl());
         settingsView.setPeriodMinutes(configState.getPeriodMinutes());

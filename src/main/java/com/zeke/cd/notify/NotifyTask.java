@@ -2,8 +2,8 @@ package com.zeke.cd.notify;
 
 import com.intellij.concurrency.JobScheduler;
 import com.intellij.openapi.application.ApplicationManager;
-import com.zeke.cd.config.ConfigState;
-import com.zeke.cd.config.IConfigService;
+import com.zeke.cd.components.ConfigState;
+import com.zeke.cd.components.IConfigComponent;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +26,7 @@ public class NotifyTask {
      */
     public static void restart() {
         destroy();
-        ConfigState configState = IConfigService.getInstance().getState();
+        ConfigState configState = IConfigComponent.getInstance().getState();
         ScheduledFuture scheduledFuture = JobScheduler.getScheduler().scheduleWithFixedDelay(new ToastRunnable(),
                 configState.getPeriodMinutes(), configState.getPeriodMinutes(), TimeUnit.MINUTES);
         SCHEDULED_FUTURE_CONTEXT.set(scheduledFuture);
@@ -49,7 +49,7 @@ public class NotifyTask {
     static class ToastRunnable implements Runnable{
         @Override
         public void run() {
-            ConfigState configState = IConfigService.getInstance().getState();
+            ConfigState configState = IConfigComponent.getInstance().getState();
             ConfigState.RemindTypeEnum remindType = ConfigState.RemindTypeEnum.valueOf(configState.getRemindType());
             INotifyStrategy remindStrategy = INotifyStrategy.getRemindStrategy(remindType);
             ApplicationManager.getApplication().invokeLater(remindStrategy::msgNotify);

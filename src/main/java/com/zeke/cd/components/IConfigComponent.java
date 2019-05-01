@@ -1,11 +1,11 @@
-package com.zeke.cd.config;
+package com.zeke.cd.components;
 
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 配置参数持久化服务
+ * 配置参数持久化组件服务
  *
  * <p>依赖于 Intellij Platform 的 {@link PersistentStateComponent} 组件实现</p>
  *
@@ -14,11 +14,11 @@ import org.jetbrains.annotations.NotNull;
  * @see <a href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html">SDK DevGuide</a>
  * @since 2019-04-28
  */
-public interface IConfigService extends PersistentStateComponent<ConfigState> {
+public interface IConfigComponent extends PersistentStateComponent<ConfigState> {
 
     /** 由 Intellij Platform 保证的单例模式 */
-    static IConfigService getInstance() {
-        return ServiceManager.getService(IConfigService.class);
+    static IConfigComponent getInstance() {
+        return ServiceManager.getService(IConfigComponent.class);
     }
 
     /**

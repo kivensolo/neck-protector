@@ -35,8 +35,8 @@
         <applicationConfigurable groupId="other" instance="com.zeke.cd.settings.PluginSettingPage"/>
 
         <!--href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html-->
-        <applicationService serviceInterface="com.zeke.cd.config.IConfigService"
-                            serviceImplementation="com.zeke.cd.config.ConfigServiceImpl"/>
+        <applicationService serviceInterface="com.zeke.cd.components.IConfigComponent"
+                            serviceImplementation="com.zeke.cd.components.ConfigComponentImpl"/>
     </extensions>
 
     <actions>
@@ -44,8 +44,8 @@
         <group id="KingZPlugin.PluginSet" text="ZeKePlugins" description="The plugin set by zekeWong">
             <add-to-group group-id="MainMenu" anchor="last"/>
 
-            <action id="NeckProtector.ShowOpacityTableTool" class="com.zeke.cd.actions.ShowOpacityTableAction"
-                     text="不透明度16进制表" description="展示不透明度对应的16进制表">
+            <action id="ShowOpacityTable" class="com.zeke.cd.actions.ShowOpacityTableAction"
+                    text="不透明度16进制表" description="展示不透明度对应的16进制表">
                 <!--<keyboard-shortcut keymap="$default" first-keystroke="shift P"/>-->
             </action>
         </group>

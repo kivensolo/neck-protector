@@ -1,6 +1,6 @@
 package com.zeke.cd.notify;
 
-import com.zeke.cd.config.ConfigState;
+import com.zeke.cd.components.ConfigState;
 import com.zeke.cd.images.BaseImageManager;
 
 import java.util.concurrent.TimeUnit;
