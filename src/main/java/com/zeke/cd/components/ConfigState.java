@@ -58,11 +58,11 @@ public class ConfigState {
     /**
      * 默认配置对象
      *
-     * <p>在 {@link IConfigComponent#updateState(ConfigState)} 时，新配置对象会与默认配置对象作比较，
-     * IDEA 会保存有差异的字段至 {@link ConfigComponentImpl} 指定的 {@code neckProtector.xml} 配置文件中</p>
+     * <p>在 {@link IConfigService#updateState(ConfigState)} 时，新配置对象会与默认配置对象作比较，
+     * IDEA 会保存有差异的字段至 {@link ConfigServiceImpl} 指定的 {@code neckProtector.xml} 配置文件中</p>
      *
-     * @see IConfigComponent#getState()
-     * @see IConfigComponent#updateState(ConfigState)
+     * @see IConfigService#getState()
+     * @see IConfigService#updateState(ConfigState)
      */
     public ConfigState() {
         // 第一次开启插件时，应该使用默认配置

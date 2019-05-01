@@ -4,7 +4,7 @@ import com.intellij.notification.*;
 import com.intellij.openapi.diagnostic.Logger;
 import com.zeke.cd.actions.OpenImageAction;
 import com.zeke.cd.components.ConfigState;
-import com.zeke.cd.components.IConfigComponent;
+import com.zeke.cd.components.IConfigService;
 import com.zeke.cd.settings.GlobalSettings;
 import org.jetbrains.annotations.NotNull;
 
@@ -80,7 +80,7 @@ public interface INotifyStrategy {
             NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
             NotificationGroup notificationGroup = new NotificationGroup(displayId, displayType, true);
 
-            ConfigState cs = IConfigComponent.getInstance().getState();
+            ConfigState cs = IConfigService.getInstance().getState();
             Notification notification = obtainNotification(notificationGroup,
                                                            cs.getNotifyTitle(),
                                                            cs.getNotifyContent(),

@@ -13,12 +13,13 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0
  * @see <a href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html">SDK DevGuide</a>
  * @since 2019-04-28
+ *
  */
-public interface IConfigComponent extends PersistentStateComponent<ConfigState> {
+public interface IConfigService extends PersistentStateComponent<ConfigState> {
 
     /** 由 Intellij Platform 保证的单例模式 */
-    static IConfigComponent getInstance() {
-        return ServiceManager.getService(IConfigComponent.class);
+    static IConfigService getInstance() {
+        return ServiceManager.getService(IConfigService.class);
     }
 
     /**

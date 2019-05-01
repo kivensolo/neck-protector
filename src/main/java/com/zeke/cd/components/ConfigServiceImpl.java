@@ -6,7 +6,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * {@link IConfigComponent} 实现类
+ * {@link IConfigService} 实现类
  *
  * @author King.Z
  * @version 1.0
@@ -14,10 +14,10 @@ import org.jetbrains.annotations.NotNull;
  * @since 2019-04-28
  */
 @State(name = "neckProtector", storages = @Storage("neckProtector.xml"))
-public class ConfigComponentImpl implements IConfigComponent {
+public class ConfigServiceImpl implements IConfigService {
     private ConfigState configState;
 
-    public ConfigComponentImpl() {
+    public ConfigServiceImpl() {
         this.configState = new ConfigState();
     }
 
