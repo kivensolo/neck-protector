@@ -1,4 +1,4 @@
-package com.zeke.cd.components;
+package com.zeke.cd.service;
 
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;

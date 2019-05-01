@@ -2,9 +2,9 @@ package com.zeke.cd.settings;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.options.SearchableConfigurable;
-import com.zeke.cd.components.ConfigState;
-import com.zeke.cd.components.IConfigService;
 import com.zeke.cd.notify.NotifyTask;
+import com.zeke.cd.service.ConfigState;
+import com.zeke.cd.service.IConfigService;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

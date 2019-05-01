@@ -2,8 +2,8 @@ package com.zeke.cd.notify;
 
 import com.intellij.concurrency.JobScheduler;
 import com.intellij.openapi.application.ApplicationManager;
-import com.zeke.cd.components.ConfigState;
-import com.zeke.cd.components.IConfigService;
+import com.zeke.cd.service.ConfigState;
+import com.zeke.cd.service.IConfigService;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;

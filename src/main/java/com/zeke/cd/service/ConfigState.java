@@ -1,4 +1,4 @@
-package com.zeke.cd.components;
+package com.zeke.cd.service;
 
 import com.intellij.util.xmlb.annotations.OptionTag;
 import com.zeke.cd.notify.NotifyConfig;

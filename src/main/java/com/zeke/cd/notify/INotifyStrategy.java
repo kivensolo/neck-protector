@@ -3,8 +3,8 @@ package com.zeke.cd.notify;
 import com.intellij.notification.*;
 import com.intellij.openapi.diagnostic.Logger;
 import com.zeke.cd.actions.OpenImageAction;
-import com.zeke.cd.components.ConfigState;
-import com.zeke.cd.components.IConfigService;
+import com.zeke.cd.service.ConfigState;
+import com.zeke.cd.service.IConfigService;
 import com.zeke.cd.settings.GlobalSettings;
 import org.jetbrains.annotations.NotNull;
 

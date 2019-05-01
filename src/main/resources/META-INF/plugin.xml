@@ -35,8 +35,8 @@
         <applicationConfigurable groupId="other" instance="com.zeke.cd.settings.PluginSettingPage"/>
 
         <!--href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html-->
-        <applicationService serviceInterface="com.zeke.cd.components.IConfigService"
-                            serviceImplementation="com.zeke.cd.components.ConfigServiceImpl"/>
+        <applicationService serviceInterface="com.zeke.cd.service.IConfigService"
+                            serviceImplementation="com.zeke.cd.service.ConfigServiceImpl"/>
     </extensions>
 
     <actions>

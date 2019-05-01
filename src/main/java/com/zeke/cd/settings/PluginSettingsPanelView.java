@@ -2,8 +2,8 @@ package com.zeke.cd.settings;
 
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
-import com.zeke.cd.components.ConfigState;
 import com.zeke.cd.notify.NotifyConfig;
+import com.zeke.cd.service.ConfigState;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -59,7 +59,7 @@ public class PluginSettingsPanelView {
     /**
      * 获取提醒方式
      *
-     * @return {@link com.zeke.cd.components.ConfigState.RemindTypeEnum}
+     * @return {@link com.zeke.cd.service.ConfigState.RemindTypeEnum}
      */
     public int getRemindTypeOption() {
         return remindTypeOptionsView.getSelectedIndex();

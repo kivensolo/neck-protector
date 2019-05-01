@@ -8,9 +8,9 @@ import com.intellij.openapi.fileEditor.impl.EditorWindow;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.zeke.cd.components.ConfigState;
-import com.zeke.cd.components.IConfigService;
 import com.zeke.cd.notify.INotifyStrategy;
+import com.zeke.cd.service.ConfigState;
+import com.zeke.cd.service.IConfigService;
 
 import javax.swing.*;
 import java.net.MalformedURLException;
