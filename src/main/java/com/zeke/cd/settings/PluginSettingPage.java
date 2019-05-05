@@ -2,6 +2,7 @@ package com.zeke.cd.settings;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.options.SearchableConfigurable;
+import com.intellij.openapi.ui.Messages;
 import com.zeke.cd.notify.NotifyTask;
 import com.zeke.cd.service.ConfigState;
 import com.zeke.cd.service.IConfigService;
@@ -24,7 +25,7 @@ public class PluginSettingPage implements SearchableConfigurable {
     /**
      * 插件设置页面对象
      */
-    private PluginSettingsPanelView settingsView;
+    private SettingsPanelView settingsView;
 
     /**
      * {@inheritDoc}
@@ -56,13 +57,13 @@ public class PluginSettingPage implements SearchableConfigurable {
     /**
      * IDEA 初始化设置页面时，会调用此方法
      *
-     * @return 由 {@code UI Designer} 生成的 {@link PluginSettingsPanelView} 页面
+     * @return 由 {@code UI Designer} 生成的 {@link SettingsPanelView} 页面
      */
     @Nullable
     @Override
     public JComponent createComponent() {
         if (this.settingsView == null) {
-            this.settingsView = new PluginSettingsPanelView();
+            this.settingsView = new SettingsPanelView();
         }
         return this.settingsView.getPluginSettingPanel();
     }
@@ -81,12 +82,16 @@ public class PluginSettingPage implements SearchableConfigurable {
      * 用户点击 "Apply" 按钮或 "OK" 按钮之后，会调用此方法
      */
     @Override
-    public void apply(){
+    public void apply() {
         if (this.settingsView == null) return;
+        int periodMinutes = settingsView.getPeriodMinutes();
+        if (!isPeriodValid(periodMinutes)) {
+            return;
+        }
         ConfigState configState = IConfigService.getInstance().getState();
+        configState.setPeriodMinutes(periodMinutes);
+        configState.setImageSrcType(settingsView);
         configState.setRemindType(settingsView.getRemindTypeOption());
-        configState.setRemindImageUrl(settingsView.getImageUrl());
-        configState.setPeriodMinutes(settingsView.getPeriodMinutes());
         configState.setNotifyTitle(settingsView.getNotifyTitle());
         configState.setNotifyContent(settingsView.getNotifyContent());
         configState.setNotifyAction(settingsView.getNotifyAction());
@@ -97,20 +102,23 @@ public class PluginSettingPage implements SearchableConfigurable {
         LOG.info("restart scheduled remind task");
     }
 
+    private boolean isPeriodValid(int periodMinutes) {
+        if (periodMinutes <= 0) {
+            Messages.showMessageDialog("能不能大于0心里没点B数么~~",
+                    "警告",
+                    Messages.getInformationIcon());
+            return false;
+        }
+        return true;
+    }
+
     /**
      * IDEA 初始化设置页面或者用户点击 "Reset" 按钮之后，会调用此方法
      */
     @Override
     public void reset() {
         if (settingsView == null) return;
-
-        ConfigState configState = IConfigService.getInstance().getState();
-        settingsView.setRemindTypeOption(configState.getRemindType());
-        settingsView.setImageUrl(configState.getRemindImageUrl());
-        settingsView.setPeriodMinutes(configState.getPeriodMinutes());
-        settingsView.setNotifyTitle(configState.getNotifyTitle());
-        settingsView.setNotifyContent(configState.getNotifyContent());
-        settingsView.setNotifyAction(configState.getNotifyAction());
+        settingsView.reset();
         LOG.info("reset user setting");
     }
 

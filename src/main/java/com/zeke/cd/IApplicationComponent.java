@@ -1,7 +1,7 @@
 package com.zeke.cd;
 
 /**
- * 基础定时提醒组件
+ * 自定义应用程序级别组件
  *
  * <p>依赖于 Intellij Platform 组件实现</p>
  *

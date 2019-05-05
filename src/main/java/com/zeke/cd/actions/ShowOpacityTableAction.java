@@ -12,7 +12,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.Consumer;
-import com.zeke.cd.images.BaseImageManager;
+import com.zeke.cd.images.managers.BaseImageManager;
 
 import javax.swing.*;
 import java.net.URL;
@@ -39,7 +39,7 @@ public class ShowOpacityTableAction extends AnAction {
             LOG.warn("currentProject cannot be null");
             return;
         }
-        URL picUrl = BaseImageManager.getInstance().getHexComparisonPicUrl();
+        URL picUrl = BaseImageManager.getHexComparisonPicUrl();
         VirtualFile image = VfsUtil.findFileByURL(picUrl);
         if (image == null) {
             LOG.error("cannot find the image by URL: " + picUrl.toString());

@@ -36,7 +36,8 @@ public class ConfigServiceImpl implements IConfigService {
     /**
      * {@inheritDoc}
      *
-     * <p>调用此方法，会将配置数据持久化至 {@code neckProtector.xml} 配置文件中</p>
+     * <p>调用此方法，会将与默认数据不一致的配置数据
+     * 持久化至 {@code neckProtector.xml} 配置文件中</p>
      */
     @Override
     public void updateState(@NotNull ConfigState state) {
@@ -49,5 +50,10 @@ public class ConfigServiceImpl implements IConfigService {
     @Override
     public void loadState(@NotNull ConfigState state) {
         XmlSerializerUtil.copyBean(state, this.configState);
+    }
+
+    @NotNull
+    public String getServiceName(){
+        return ConfigServiceImpl.class.getSimpleName();
     }
 }

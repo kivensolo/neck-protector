@@ -11,7 +11,8 @@ import org.jetbrains.annotations.NotNull;
  *
  * @author King.Z
  * @version 1.0
- * @see <a href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html">SDK DevGuide</a>
+ * @see <a href="https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_services.html">Plugin Services</a>
+ * @see <a href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html">PersistentStateComponent</a>
  * @since 2019-04-28
  *
  */

@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * 定时通知任务
  * @author King.Z <br>
- * @since    2019/4/28 20:59 <br>
- * @version  1.0 <br>
+ * @version 1.0 <br>
+ * @since 2019/4/28 20:59 <br>
  */
 public class NotifyTask {
     private static final ThreadLocal<ScheduledFuture> SCHEDULED_FUTURE_CONTEXT = new ThreadLocal<>();

@@ -1,8 +1,14 @@
 package com.zeke.cd.service;
 
 import com.intellij.util.xmlb.annotations.OptionTag;
-import com.zeke.cd.notify.NotifyConfig;
+import com.zeke.cd.images.managers.BaseImageManager;
+import com.zeke.cd.images.managers.CustomImageManager;
+import com.zeke.cd.notify.PluginDefaultConfig;
+import com.zeke.cd.settings.SettingsPanelView;
 
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -15,6 +21,8 @@ import java.util.stream.Stream;
  * @since 2019-04-28
  */
 public class ConfigState {
+    @OptionTag
+    private Integer imageSrcType;
     @OptionTag
     private Integer remindType;
     @OptionTag
@@ -29,14 +37,69 @@ public class ConfigState {
     private String notifyAction;
 
     /**
+     * 图片来源枚举类
+     */
+    public enum ImageSrcTypeEnum {
+
+        /**
+         * 使用插件自带默认图
+         */
+        DEFAULT(0, "插件内置默认图"),
+
+        /**
+         * 使用Bing搜索的图片
+         */
+        BING(1, "Bing"),
+
+        /**
+         * 自定义本地图片
+         */
+        CUSTOM(2, "选择本地图片");
+
+        private static Map<String, ImageSrcTypeEnum> stringToEnum = new HashMap<>();
+
+        static {
+            for (ImageSrcTypeEnum act : values()) {
+                stringToEnum.put(act.toString(), act);
+            }
+        }
+
+        public final int index;
+        public final String description;
+
+        ImageSrcTypeEnum(int index, String description) {
+            this.index = index;
+            this.description = description;
+        }
+
+        public static ImageSrcTypeEnum valueOf(int index) {
+            return Stream.of(ImageSrcTypeEnum.values())
+                    .filter(imageSrcType -> index == imageSrcType.index)
+                    .findFirst()
+                    .orElseThrow(NullPointerException::new);
+        }
+
+        @Override
+        public String toString() {
+            return description;
+        }
+
+        public static ImageSrcTypeEnum fromString(String type) {
+            return stringToEnum.get(type);
+        }
+    }
+
+    /**
      * 提醒方式枚举类
-     *
-     * @see
      */
     public enum RemindTypeEnum {
-        /** 直接打开图片 */
+        /**
+         * 直接打开图片
+         */
         DIRECT(0, "直接显示图片"),
-        /** 间接打开图片 */
+        /**
+         * 间接打开图片
+         */
         INDIRECT(1, "消息通知 -> 打开图片");
 
         public final int index;
@@ -59,19 +122,21 @@ public class ConfigState {
      * 默认配置对象
      *
      * <p>在 {@link IConfigService#updateState(ConfigState)} 时，新配置对象会与默认配置对象作比较，
-     * IDEA 会保存有差异的字段至 {@link ConfigServiceImpl} 指定的 {@code neckProtector.xml} 配置文件中</p>
+     * IDEA 会保存有差异的字段至 {@link ConfigServiceImpl} 指定的
+     * {@code neckProtector.xml} 配置文件中</p>
      *
      * @see IConfigService#getState()
      * @see IConfigService#updateState(ConfigState)
      */
     public ConfigState() {
         // 第一次开启插件时，应该使用默认配置
-        this.remindType = NotifyConfig.REMIND_TYPE;
-        this.remindImageUrl = NotifyConfig.DISPLAY_IMAGE_URL;
-        this.periodMinutes = NotifyConfig.PERIOD_MINUTES;
-        this.notifyTitle = NotifyConfig.NOTIFY_TITLE;
-        this.notifyContent = NotifyConfig.NOTIFY_CONTENT;
-        this.notifyAction = NotifyConfig.NOTIFY_ACTION;
+        this.imageSrcType = PluginDefaultConfig.IAMGE_SRC;
+        this.remindType = PluginDefaultConfig.NOTIFY_TYPE;
+        this.remindImageUrl = PluginDefaultConfig.IMAGE_URL;
+        this.periodMinutes = PluginDefaultConfig.PERIOD_MINUTES;
+        this.notifyTitle = PluginDefaultConfig.NOTIFY_TITLE;
+        this.notifyContent = PluginDefaultConfig.NOTIFY_CONTENT;
+        this.notifyAction = PluginDefaultConfig.NOTIFY_ACTION;
     }
 
     @Override
@@ -93,6 +158,29 @@ public class ConfigState {
     }
 
     // getter and setter
+    public Integer getImageSrcType() {
+        return imageSrcType;
+    }
+
+    public void setImageSrcType(Integer type) {
+        this.imageSrcType = type;
+    }
+
+    public void setImageSrcType(SettingsPanelView settingView) {
+        setImageSrcType(settingView.getImageSrcTypeOption());
+
+        ImageSrcTypeEnum typeEnum = ImageSrcTypeEnum.valueOf(imageSrcType);
+        BaseImageManager imageManager = BaseImageManager.getImageManagerFactory().create(typeEnum);
+        if(imageManager instanceof CustomImageManager){
+            //更新自定义图片的URL
+            ((CustomImageManager)imageManager).setImageUrl(settingView.getImageUrlFromBrowseButton());
+        }
+
+        URL imageUrl = imageManager.getImageUrl();
+        if(imageUrl != null){
+            setRemindImageUrl(imageUrl.toString());
+        }
+    }
 
     public Integer getRemindType() {
         return remindType;

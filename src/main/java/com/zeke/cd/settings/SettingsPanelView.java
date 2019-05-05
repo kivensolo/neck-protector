@@ -2,56 +2,66 @@ package com.zeke.cd.settings;
 
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
-import com.zeke.cd.notify.NotifyConfig;
+import com.zeke.cd.notify.PluginDefaultConfig;
 import com.zeke.cd.service.ConfigState;
+import com.zeke.cd.service.IConfigService;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * 插件设置页面
  *
  * @see PluginSettingPage#createComponent()
  */
-public class PluginSettingsPanelView {
+public class SettingsPanelView {
     private JPanel pluginSettingPanel;
 
+    private JComboBox<String> imageSrcTypeBox;
     private JComboBox<String> remindTypeOptionsView;
     private TextFieldWithBrowseButton imageUrlChoiceView;
-    private JButton defaultImageBtn;
     private JTextField periodMinutesView;
     private JTextField notifyTitleView;
     private JTextField notifyContentView;
     private JTextField notifyActionView;
 
-    public PluginSettingsPanelView() {
+    public SettingsPanelView() {
     }
 
     private void createUIComponents() {
         initRemindTypeView();
+        initImageSrcTypeView();
         initPicChoiceView();
-        initDefaultBtnView();
     }
 
-    private void initDefaultBtnView() {
-        defaultImageBtn = new JButton();
-        defaultImageBtn.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                imageUrlChoiceView.setText(NotifyConfig.DISPLAY_IMAGE_URL);
-            }
-        });
-    }
-
+    /**
+     * 初始化图片自定义选择view
+     */
     private void initPicChoiceView() {
         imageUrlChoiceView = new TextFieldWithBrowseButton();
         imageUrlChoiceView.addActionListener(PluginSettingConfig.newBrowseFolderActionListener(imageUrlChoiceView));
+        imageUrlChoiceView.setVisible(false);
     }
 
+    /**
+     * 初始化图片源方式下拉框可选项
+     */
+    private void initImageSrcTypeView() {
+        ConfigState.ImageSrcTypeEnum[] values = ConfigState.ImageSrcTypeEnum.values();
+        imageSrcTypeBox = new ComboBox<>();
+        for (ConfigState.ImageSrcTypeEnum imageSrcType : values) {
+            imageSrcTypeBox.addItem(imageSrcType.description);
+        }
+        imageSrcTypeBox.addItemListener(new ImageSrcChageAction());
+    }
+
+    /**
+     * 初始化消息提醒方式下拉框可选项
+     */
     private void initRemindTypeView() {
         remindTypeOptionsView = new ComboBox<>();
         for (ConfigState.RemindTypeEnum remindType : ConfigState.RemindTypeEnum.values()) {
-            //初始化下拉框可选项
             remindTypeOptionsView.addItem(remindType.description);
         }
     }
@@ -64,6 +74,7 @@ public class PluginSettingsPanelView {
     public int getRemindTypeOption() {
         return remindTypeOptionsView.getSelectedIndex();
     }
+
 
     /**
      * 设置提醒方式
@@ -83,16 +94,38 @@ public class PluginSettingsPanelView {
     }
 
     /**
+     * 获取图片源方式
+     */
+    public int getImageSrcTypeOption(){
+        return imageSrcTypeBox.getSelectedIndex();
+    }
+
+    /**
+     * 设置图片源方式
+     * <p>optionIndex 参数值：</p>
+     * <ul>
+     * <li>0. 内置默认图</li>
+     * <li>1. Bing</li>
+     * <li>2. 自定义图</li>
+     * </ul>
+     */
+    public void setImageSrcTypeOption(int optionIndex) {
+        int index;
+        index = Math.max(optionIndex, ConfigState.ImageSrcTypeEnum.DEFAULT.index);
+        imageSrcTypeBox.setSelectedIndex(Math.min(index, ConfigState.ImageSrcTypeEnum.CUSTOM.index));
+    }
+
+    /**
      * 获取提醒图片的绝对路径
      */
-    public String getImageUrl() {
+    public String getImageUrlFromBrowseButton() {
         return imageUrlChoiceView.getText();
     }
 
     /**
      * 设置提醒图片的绝对路径
      */
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrlToFromButton(String imageUrl) {
         imageUrlChoiceView.setText(imageUrl);
     }
 
@@ -103,7 +136,7 @@ public class PluginSettingsPanelView {
         try {
             return Integer.parseInt(periodMinutesView.getText());
         } catch (NumberFormatException e) {
-            return NotifyConfig.PERIOD_MINUTES;
+            return PluginDefaultConfig.PERIOD_MINUTES;
         }
     }
 
@@ -158,5 +191,43 @@ public class PluginSettingsPanelView {
 
     public JPanel getPluginSettingPanel() {
         return pluginSettingPanel;
+    }
+
+
+    /**
+     * 重置配置参数为上次配置的数据，而非插件初始安装的默认值。
+     */
+    public void reset() {
+        ConfigState configState = IConfigService.getInstance().getState();
+        setImageSrcTypeOption(configState.getImageSrcType());
+        setRemindTypeOption(configState.getRemindType());
+        setImageUrlToFromButton(configState.getRemindImageUrl());
+
+        setPeriodMinutes(configState.getPeriodMinutes());
+        setNotifyTitle(configState.getNotifyTitle());
+        setNotifyContent(configState.getNotifyContent());
+        setNotifyAction(configState.getNotifyAction());
+    }
+
+
+    /**
+     * 图片源下拉框选项改变的监听类
+     */
+    class ImageSrcChageAction implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            String desc = e.getItem().toString();
+            ConfigState.ImageSrcTypeEnum type = ConfigState.ImageSrcTypeEnum.fromString(desc);
+            if (type == ConfigState.ImageSrcTypeEnum.BING) {
+                imageUrlChoiceView.setVisible(false);
+            } else if (type == ConfigState.ImageSrcTypeEnum.DEFAULT) {
+                imageUrlChoiceView.setVisible(false);
+                //imageUrlChoiceView.setText(PluginDefaultConfig.IMAGE_URL);
+            } else if (type == ConfigState.ImageSrcTypeEnum.CUSTOM) {
+                imageUrlChoiceView.setVisible(true);
+            }
+
+        }
     }
 }

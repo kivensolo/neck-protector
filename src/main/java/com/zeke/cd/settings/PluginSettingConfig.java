@@ -1,12 +1,12 @@
 package com.zeke.cd.settings;
 
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
-import com.intellij.openapi.ui.ComponentWithBrowseButton.*;
+import com.intellij.openapi.ui.ComponentWithBrowseButton.BrowseFolderActionListener;
 import com.intellij.openapi.ui.TextComponentAccessor;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.zeke.cd.notify.NotifyConfig;
+import com.zeke.cd.notify.PluginDefaultConfig;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -52,15 +52,18 @@ public interface PluginSettingConfig {
      * 图片选择器的监听事件
      */
     static BrowseFolderActionListener newBrowseFolderActionListener(TextFieldWithBrowseButton textField) {
-        return new BrowseFolderActionListener<JTextField>("图片 URL", null, textField, null,
-                PluginSettingConfig.IMAGE_FILE_CHOOSER, TextComponentAccessor.TEXT_FIELD_WHOLE_TEXT) {
+        return new BrowseFolderActionListener<JTextField>("图片 URL", "选择你喜欢的图片",
+                textField, null,
+                PluginSettingConfig.IMAGE_FILE_CHOOSER,
+                TextComponentAccessor.TEXT_FIELD_WHOLE_TEXT) {
             @NotNull
             @Override
             protected String chosenFileToResultingText(@NotNull VirtualFile chosenFile) {
                 try {
-                    return VfsUtil.toUri(chosenFile).toURL().toString(); // 选择图片时，返回文件完整的 URL 而不仅仅是 Path
+                    // 选择图片时，返回文件完整的 URL 而不仅仅是 Path
+                    return VfsUtil.toUri(chosenFile).toURL().toString();
                 } catch (MalformedURLException e) {
-                    return NotifyConfig.DISPLAY_IMAGE_URL;
+                    return PluginDefaultConfig.IMAGE_URL;
                 }
             }
         };

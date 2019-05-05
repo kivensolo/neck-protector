@@ -1,4 +1,4 @@
-package com.zeke.cd.images;
+package com.zeke.cd.images.managers;
 
 import java.net.URL;
 
@@ -11,7 +11,7 @@ public interface ImageManager {
 
     /**
      * 获取即将用于展示的图片
-     * 支持“file” 和 “jar” 及 “http” 协议
+     * 支持 file/jar 协议
      */
     URL getImageUrl();
 }

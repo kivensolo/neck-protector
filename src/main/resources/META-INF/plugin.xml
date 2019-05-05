@@ -1,18 +1,40 @@
 <idea-plugin>
+    <!--please see https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html for descriptio-->
+
     <id>com.zeke.wong.neck-protect</id>
     <name>NeckProtector</name>
     <version>1.0</version>
-    <vendor email="760553478@qq.com" url="http://www.starcor.com">Starcor</vendor>
+    <vendor email="760553478@qq.com" url="https://github.com/kivensolo">GitHub</vendor>
 
     <description><![CDATA[
       <h1>Neck Protector</h1>
+      <br/>
+      <p>
+      <b>
+      | <a href="https://github.com/kivensolo/neck-protector">GitHub</a> |
+      </b>
+      </p>
+      <br/>
+      <p><b>一款可以定时提醒你休息放松的插件，动动脖子、放松肩膀，远离肩颈困扰 ：）</b>
       <br>
-      <p><b>A warm plugin that reminds you to relax</b></p>
-      <p> <b>一款可以定时提醒你休息放松的插件，动动脖子、放松肩膀，远离肩颈困扰 ：）</b>
-      <br>
-       支持版本 >= 2017.1 (Branch number: 171 )
+      <p><b>兼容性:</b>
+      兼容除 MPS 外所有产品编译号为171(IDEA 2017.1)以上的 Jetbrains IDE 产品。<br>
+        <ul>
+        <li>Android Studio</li>
+        <li>IntelliJ IDEA</li>
+        <li>IntelliJ IDEA Community Edition</li>
+        <li>PhpStorm</li>
+        <li>WebStorm</li>
+        <li>PyCharm</li>
+        <li>PyCharm Community Edition</li>
+        <li>RubyMine</li>
+        <li>AppCode</li>
+        <li>CLion</li>
+        <li>DataGrip</li>
+        <li>Rider</li>
+      </ul>
+      </p>
       </p><br>
-      GitHub: <a href="https://github.com/kivensolo/neck-protector">https://github.com/kivensolo/neck-protector</a>
      ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
@@ -27,33 +49,43 @@
         </component>
     </application-components>
 
- <!--   <depends>
-        com.intellij.modules.lang
-    </depends>-->
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable groupId="other" instance="com.zeke.cd.settings.PluginSettingPage"/>
 
-        <!--href="https://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html-->
+        <!--href="https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_services.html-->
+        <!-- Declare the application level service -->
         <applicationService serviceInterface="com.zeke.cd.service.IConfigService"
                             serviceImplementation="com.zeke.cd.service.ConfigServiceImpl"/>
+
+         <!-- Declare the project level service -->
+        <!--<projectService serviceInterface="Mypackage.MyProjectService"
+                  serviceImplementation="Mypackage.MyProjectServiceImpl" />-->
     </extensions>
 
     <actions>
         <!-- 自定义分组 如在Help分组后添加一个名为ZeKePlugins的分组，该分组下可放置多个Action -->
-        <group id="KingZPlugin.PluginSet" text="ZeKePlugins" description="The plugin set by zekeWong">
+        <!--<group id="KingZPlugin.PluginSet" text="ZeKePlugins" description="A Plugins tool box by zekeWong">
             <add-to-group group-id="MainMenu" anchor="last"/>
 
-            <action id="ShowOpacityTable" class="com.zeke.cd.actions.ShowOpacityTableAction"
-                    text="不透明度16进制表" description="展示不透明度对应的16进制表">
-                <!--<keyboard-shortcut keymap="$default" first-keystroke="shift P"/>-->
+            <action id="ShowOpacityTable"
+                    class="com.zeke.cd.actions.ShowOpacityTableAction"
+                    text="不透明度16进制表"
+                    icon="PluginIcons.Actions.ZEKE_HEX"
+                    description="展示不透明度对应的16进制表">
+                &lt;!&ndash;<keyboard-shortcut keymap="$default" first-keystroke="shift P"/>&ndash;&gt;
             </action>
-        </group>
+        </group>-->
 
         <!--将Action 添加至已有的分组中-->
-      <!--  <action id="NeckProtector.ShowOpacityTableTool" class="com.zeke.cd.actions.ShowOpacityTableAction"
-                    text="不透明度16进制表" description="展示不透明度对应的16进制表">
+        <action id="ShowOpacityTable" class="com.zeke.cd.actions.ShowOpacityTableAction"
+                    text="不透明度16进制表"
+                    icon="PluginIcons.Actions.ZEKE_HEX"
+                    description="展示不透明度对应的16进制表">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
-        </action>-->
+        </action>
     </actions>
 </idea-plugin>

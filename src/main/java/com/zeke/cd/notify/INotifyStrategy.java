@@ -1,8 +1,12 @@
 package com.zeke.cd.notify;
 
+import com.intellij.ide.DataManager;
 import com.intellij.notification.*;
+import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.util.Consumer;
 import com.zeke.cd.actions.OpenImageAction;
+import com.zeke.cd.images.OpenImageConsumer;
 import com.zeke.cd.service.ConfigState;
 import com.zeke.cd.service.IConfigService;
 import com.zeke.cd.settings.GlobalSettings;
@@ -17,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @FunctionalInterface
 public interface INotifyStrategy {
+    Logger LOG = Logger.getInstance(INotifyStrategy.class);
     INotifyStrategy INSTANCE_REMIND_DIRECT = new RemindDirect();
     INotifyStrategy INSTANCE_REMIND_INDIRECT = new RemindIndirect();
 
@@ -58,9 +63,9 @@ public interface INotifyStrategy {
          */
         @Override
         public void msgNotify() {
-            //DataManager.getInstance().getDataContextFromFocus()
-            //        .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
-            //        .doWhenRejected((Consumer<String>) LOG::error);
+            DataManager.getInstance().getDataContextFromFocus()
+                    .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
+                    .doWhenRejected((Consumer<String>) LOG::error);
         }
     }
 
