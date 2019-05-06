@@ -4,21 +4,20 @@
     <id>com.zeke.wong.neck-protect</id>
     <name>NeckProtector</name>
     <version>1.0</version>
+
     <vendor email="760553478@qq.com" url="https://github.com/kivensolo">GitHub</vendor>
 
     <description><![CDATA[
-      <h1>Neck Protector</h1>
-      <br/>
-      <p>
-      <b>
-      | <a href="https://github.com/kivensolo/neck-protector">GitHub</a> |
-      </b>
-      </p>
-      <br/>
-      <p><b>一款可以定时提醒你休息放松的插件，动动脖子、放松肩膀，远离肩颈困扰 ：）</b>
+      When you keep the bad posture for a long time to write code,
+      it is easy to cause a variety of shoulder and neck problems!<br>
+      The plugin will remind you to have a rest when you work constantly for an hour.
+      <br>
+       连续编写代码一小时，插件会定时提醒你休息放松，动动脖子、放松肩膀，远离肩颈困扰!
+      <br>
+      <b> | <a href="https://github.com/kivensolo/neck-protector">GitHub</a> | </b>
       <br>
       <p><b>兼容性:</b>
-      兼容除 MPS 外所有产品编译号为171(IDEA 2017.1)以上的 Jetbrains IDE 产品。<br>
+      兼容所有产品编译号为171(IDEA 2017.1)以上的 Jetbrains IDE 产品。<br>
         <ul>
         <li>Android Studio</li>
         <li>IntelliJ IDEA</li>
@@ -32,10 +31,21 @@
         <li>CLion</li>
         <li>DataGrip</li>
         <li>Rider</li>
+        <li>...</li>
       </ul>
       </p>
       </p><br>
      ]]></description>
+
+    <change-notes><![CDATA[
+        <ul>
+            <li>可自定义提醒图片</li>
+            <li>可自定义提醒方式</li>
+            <li>可自定义提醒时间</li>
+            <li>可自定义提醒文案</li>
+            <li>自动获取每日Bing搜索精美图片</li>
+        </ul>
+    ]]></change-notes>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="171"/>
