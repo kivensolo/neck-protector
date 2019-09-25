@@ -17,7 +17,9 @@ dependencies {
 }
 
 intellij {
-    version 'IC-2017.1'
+//    设置运行插件的IntelliJ的版本以及沙箱地址
+    version 'IC-2018.1'
+//    sandboxDirectory = project.rootDir.canonicalPath + "/.sandbox" //插件生成的临时文件的地址，可以省略
     updateSinceUntilBuild false
 }
 
@@ -28,7 +30,7 @@ tasks.withType(JavaCompile) {
 patchPluginXml {
     changeNotes """
       <ul>
-        <li>v1.0 init</li>
+        <li>v1.1 init</li>
       </ul>
       """
 }
