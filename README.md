@@ -27,7 +27,6 @@
 
 附加工具
 ----
-此附加工具为了部分童鞋定制。
 - 不透明度对应的16进制表<br>
 ![opacity](doc/opacity.png)
 ![table](doc/table.png)
