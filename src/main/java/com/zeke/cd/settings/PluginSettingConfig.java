@@ -52,7 +52,7 @@ public interface PluginSettingConfig {
      * 图片选择器的监听事件
      */
     static BrowseFolderActionListener newBrowseFolderActionListener(TextFieldWithBrowseButton textField) {
-        return new BrowseFolderActionListener<JTextField>("图片 URL", "选择你喜欢的图片",
+        return new BrowseFolderActionListener<JTextField>("image / 图片 URL", "Choose the picture you like / 选择你喜欢的图片",
                 textField, null,
                 PluginSettingConfig.IMAGE_FILE_CHOOSER,
                 TextComponentAccessor.TEXT_FIELD_WHOLE_TEXT) {
