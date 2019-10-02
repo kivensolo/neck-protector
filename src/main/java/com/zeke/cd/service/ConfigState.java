@@ -44,7 +44,7 @@ public class ConfigState {
         /**
          * 使用插件自带默认图
          */
-        DEFAULT(0, "插件内置默认图"),
+        DEFAULT(0, "Plugin built-in default map / 插件内置默认图"),
 
         /**
          * 使用Bing搜索的图片
@@ -54,7 +54,7 @@ public class ConfigState {
         /**
          * 自定义本地图片
          */
-        CUSTOM(2, "选择本地图片");
+        CUSTOM(2, "Select local image / 选择本地图片");
 
         private static Map<String, ImageSrcTypeEnum> stringToEnum = new HashMap<>();
 
@@ -96,11 +96,11 @@ public class ConfigState {
         /**
          * 直接打开图片
          */
-        DIRECT(0, "直接显示图片"),
+        DIRECT(0, "Display pictures directly / 直接显示图片"),
         /**
          * 间接打开图片
          */
-        INDIRECT(1, "消息通知 -> 打开图片");
+        INDIRECT(1, "Message notification -> open image / 消息通知 -> 打开图片");
 
         public final int index;
         public final String description;
