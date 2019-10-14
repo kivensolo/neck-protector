@@ -16,7 +16,8 @@
       <br>
       <b> | <a href="https://github.com/kivensolo/neck-protector">GitHub</a> | </b>
       <br>
-      <p><b>兼容性:</b>
+      <p><b>compatibility / 兼容性:</b>
+      Compatible with all Jetbrains IDE products with build number 171 (IDEA 2017.1) or higher.<br>
       兼容所有产品编译号为171(IDEA 2017.1)以上的 Jetbrains IDE 产品。<br>
         <ul>
         <li>Android Studio</li>
@@ -39,11 +40,11 @@
 
     <change-notes><![CDATA[
         <ul>
-            <li>可自定义提醒图片</li>
-            <li>可自定义提醒方式</li>
-            <li>可自定义提醒时间</li>
-            <li>可自定义提醒文案</li>
-            <li>自动获取每日Bing搜索精美图片</li>
+            <li>Customizable reminder image / 可自定义提醒图片</li>
+            <li>Customizable reminder / 可自定义提醒方式</li>
+            <li>Customizable reminder time / 可自定义提醒时间</li>
+            <li>Customizable reminder copy / 可自定义提醒文案</li>
+            <li>Automatically get daily Bing search beautiful pictures / 自动获取每日Bing搜索精美图片</li>
         </ul>
     ]]></change-notes>
 
@@ -83,18 +84,18 @@
 
             <action id="ShowOpacityTable"
                     class="com.zeke.cd.actions.ShowOpacityTableAction"
-                    text="不透明度16进制表"
+                    text="Opacity hex table / 不透明度16进制表"
                     icon="PluginIcons.Actions.ZEKE_HEX"
-                    description="展示不透明度对应的16进制表">
+                    description="Show hexadecimal table corresponding to opacity / 展示不透明度对应的16进制表">
                 &lt;!&ndash;<keyboard-shortcut keymap="$default" first-keystroke="shift P"/>&ndash;&gt;
             </action>
         </group>-->
 
         <!--将Action 添加至已有的分组中-->
         <action id="ShowOpacityTable" class="com.zeke.cd.actions.ShowOpacityTableAction"
-                    text="不透明度16进制表"
+                    text="Opacity hex table / 不透明度16进制表"
                     icon="PluginIcons.Actions.ZEKE_HEX"
-                    description="展示不透明度对应的16进制表">
+                    description="Show hexadecimal table corresponding to opacity / 展示不透明度对应的16进制表">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>

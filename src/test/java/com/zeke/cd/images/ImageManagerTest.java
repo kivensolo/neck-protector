@@ -45,9 +45,9 @@ public class ImageManagerTest extends LightPlatformCodeInsightFixtureTestCase {
                             BingImageBean imageBean = new Gson().fromJson(response, BingImageBean.class);
                             if (imageBean.images.length > 0) {
                                 String url = imageBean.images[0].url;
-                                System.out.println("图片URL = " + url);
+                                System.out.println("Image / 图片 URL = " + url);
                             }else {
-                                System.out.println("数据异常");
+                                System.out.println("Abnormal data / 数据异常");
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

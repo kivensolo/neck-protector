@@ -107,10 +107,10 @@ public class BingImageManager extends BaseImageManager {
                 try {
                     BingImageBean imageBean = new Gson().fromJson(response, BingImageBean.class);
                     if (imageBean.images.length > 0) {
-                        LOG.info("Bing图片数据信息正常,下载");
+                        LOG.info("Bing image data information is normal, download / Bing图片数据信息正常,下载");
                         downloadImageByUrl(imageBean);
                     } else {
-                        LOG.info("数据异常");
+                        LOG.info("Abnormal data / 数据异常");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -126,7 +126,7 @@ public class BingImageManager extends BaseImageManager {
 
     private void downloadImageByUrl(BingImageBean imageBean) {
         String url = imageBean.images[0].url;
-        LOG.info("图片URL = " + url);
+        LOG.info("Image URL / 图片URL = " + url);
         //String urlbase = imageBean.images[0].urlbase;
         String cacheFileName = buildCacheFileName(url);
 
@@ -145,7 +145,7 @@ public class BingImageManager extends BaseImageManager {
             }
             updateConfigDataImageUrl(mImageUrl);
         } else {
-            LOG.info("图片已存在:" + cacheFileName);
+            LOG.info("Image already exists / 图片已存在:" + cacheFileName);
         }
     }
 
@@ -230,7 +230,7 @@ public class BingImageManager extends BaseImageManager {
 
         String tickCurrentDate(){
             this.currentDate = dateFormat.format(new Date());
-            LOG.info("当前系统时间："+ this.currentDate);
+            LOG.info("Current system time / 当前系统时间："+ this.currentDate);
             return this.currentDate;
         }
 

@@ -14,7 +14,7 @@
         </constraints>
         <properties>
           <labelFor value="9c3f4"/>
-          <text value="提醒方式："/>
+          <text value="Reminder / 提醒方式："/>
         </properties>
       </component>
       <component id="aca74" class="javax.swing.JLabel">
@@ -22,7 +22,7 @@
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="内容文本 ："/>
+          <text value="Content / 内容文本 ："/>
         </properties>
       </component>
       <component id="4343b" class="javax.swing.JLabel">
@@ -30,7 +30,7 @@
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="标题文本："/>
+          <text value="Title / 标题文本："/>
         </properties>
       </component>
       <component id="4941a" class="javax.swing.JTextField" binding="periodMinutesView">
@@ -62,7 +62,7 @@
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="通知按钮 ："/>
+          <text value="Notification button / 通知按钮 ："/>
         </properties>
       </component>
       <component id="d5622" class="javax.swing.JTextField" binding="notifyActionView">
@@ -88,7 +88,7 @@
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="提醒间隔(M)"/>
+          <text value="Reminder interval / 提醒间隔(M)"/>
         </properties>
       </component>
       <hspacer id="aa150">
@@ -110,7 +110,7 @@
         </constraints>
         <properties>
           <labelFor value="8cdc0"/>
-          <text value="图片源："/>
+          <text value="Image source / 图片源："/>
         </properties>
       </component>
       <component id="17db9" class="com.intellij.openapi.ui.TextFieldWithBrowseButton" binding="imageUrlChoiceView" custom-create="true">
@@ -138,7 +138,7 @@
         </constraints>
         <properties>
           <font name="YouYuan" size="18" style="1"/>
-          <text value="通知设置"/>
+          <text value="Notification settings / 通知设置"/>
         </properties>
       </component>
       <hspacer id="878b2">
@@ -152,7 +152,7 @@
         </constraints>
         <properties>
           <font name="YouYuan" size="18" style="1"/>
-          <text value="图片设置"/>
+          <text value="Picture setting / 图片设置"/>
         </properties>
       </component>
       <hspacer id="1e8b2">
