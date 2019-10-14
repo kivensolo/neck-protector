@@ -104,8 +104,8 @@ public class PluginSettingPage implements SearchableConfigurable {
 
     private boolean isPeriodValid(int periodMinutes) {
         if (periodMinutes <= 0) {
-            Messages.showMessageDialog("Can it be greater than 0? There is no B number in my heart~~ / 能不能大于0心里没点B数么~~",
-                    "caveat / 警告",
+            Messages.showMessageDialog("Greater than zero is a valid paramete ~~",
+                    "Caveat",
                     Messages.getInformationIcon());
             return false;
         }

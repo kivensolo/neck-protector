@@ -33,8 +33,8 @@ public class PluginDefaultConfig {
     public static String NOTIFY_TITLE = "NeckProtector";
 
     /** 默认通知文案的内容 */
-    public static  String NOTIFY_CONTENT = "Dear, take a rest! Be careful with cervical spondylosis~ / 亲～该休息休息啦！小心得颈椎病哦~";
+    public static  String NOTIFY_CONTENT = "Take a rest! Be careful with cervical spondylosis~";
 
     /** 默认通知文案的按钮 */
-    public static  String NOTIFY_ACTION = "Take a picture and relax / 看图放松一下";
+    public static  String NOTIFY_ACTION = "See picture and relax";
 }
