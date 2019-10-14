@@ -2,7 +2,9 @@ package com.zeke.cd;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
+import com.zeke.cd.images.BingImageBean;
 import com.zeke.cd.images.managers.BingImageManager;
+import com.zeke.cd.images.managers.ImageManager;
 import com.zeke.cd.notify.NotifyTask;
 
 /**

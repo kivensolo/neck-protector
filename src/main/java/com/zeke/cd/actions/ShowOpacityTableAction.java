@@ -42,10 +42,9 @@ public class ShowOpacityTableAction extends AnAction {
         URL picUrl = BaseImageManager.getHexComparisonPicUrl();
         VirtualFile image = VfsUtil.findFileByURL(picUrl);
         if (image == null) {
-            LOG.error("cannot find the image by URL: " + picUrl.toString());
+            LOG.error("Cannot find image by URL: " + picUrl.toString());
             return;
         }
-
         // 3. 获取当前 Project 中，正在使用的 EditorWindow
         FileEditorManagerEx fileEditorManager = FileEditorManagerEx.getInstanceEx(currentProject);
         EditorWindow currentWindow = fileEditorManager.getCurrentWindow();

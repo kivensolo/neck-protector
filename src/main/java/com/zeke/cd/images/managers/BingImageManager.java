@@ -49,11 +49,8 @@ public class BingImageManager extends BaseImageManager {
         File pluginFilePath = getPluginFilePath();
         String path = pluginFilePath.getAbsolutePath();
         String cacheFilePath;
-        if (PluginDefaultConfig.SANDBOX_MODE) {
-            cacheFilePath = Utils.join(File.separator, new String[]{path, "neck_protect_cache", "bing"});
-        } else {
-            cacheFilePath = Utils.join(File.separator, new String[]{pluginFilePath.getParent(), "neck_protect_cache", "bing"});
-        }
+        path = PluginDefaultConfig.SANDBOX_MODE ? path : pluginFilePath.getParent();
+        cacheFilePath = Utils.join(File.separator, new String[]{path, "neck_protect_cache", "bing"});
         cacheBingPath = new File(cacheFilePath);
         if (!cacheBingPath.exists()) {
             cacheBingPath.mkdirs();
@@ -239,9 +236,7 @@ public class BingImageManager extends BaseImageManager {
             public void run() {
                 String date = dateFormat.format(new Date());
                 LOG.info("Bing Checker run： current=" + date + "; lastTime=" + currentDate);
-                if(currentDate.equals(date)){
-                    //日期未变  不需要重新获取bing图片
-                }else{
+                if(!currentDate.equals(date)){
                     requestBingImage();
                 }
             }

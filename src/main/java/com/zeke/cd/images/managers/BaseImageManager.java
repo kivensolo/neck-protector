@@ -42,6 +42,10 @@ public abstract class BaseImageManager implements ImageManager {
 
     public static URL getHexComparisonPicUrl() {
         File pluginPath = getPluginFilePath();
+         if(PluginDefaultConfig.SANDBOX_MODE){
+            //沙箱模式下插件jar包路径: $APPLICATION_PLUGINS_DIR$\neck-protect\lib\neck-protect.jar
+            pluginPath = new File(Utils.join(File.separator,new String[]{pluginPath.getAbsolutePath(),"lib","neck-protect.jar"}));
+        }
         return getPluginJarFileURL(pluginPath, "!/images/opacity-comparison-table/hex.png");
     }
 
@@ -69,10 +73,10 @@ public abstract class BaseImageManager implements ImageManager {
      * --- 沙箱环境<br>
      * {@code APPLICATION_PLUGINS_DIR: $PROJECT_ROOT$\build\idea-sandbox\plugins\} <br>
      *
-     * @return 当前插件目录 <br>
-     *      --- 正式环境:<br>
+     * @return 当前插件目录(Current plugin directory) <br>
+     *      --- 正式环境(Release Evn):<br>
      *      $APPLICATION_PLUGINS_DIR$/neck-protector.jar  <br>
-     *      --- 沙箱环境:<br>
+     *      --- 沙箱环境(SandBox Evn):<br>
      *      $APPLICATION_PLUGINS_DIR$/neck-protect  <br>
      */
     public static File getPluginFilePath() {
