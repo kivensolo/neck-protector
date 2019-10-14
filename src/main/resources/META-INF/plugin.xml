@@ -16,6 +16,17 @@
       <br>
       <b> | <a href="https://github.com/kivensolo/neck-protector">GitHub</a> | </b>
       <br>
+      <p>
+        <b>Features / 特性列表</b><br>
+        <ul>
+        <li>Timed reminders / 定时提醒<li>
+        <li>Customizable reminder pictures (support Bing daily photos) / 可自定义提醒图片(支持Bing每日美图)</li>
+        <li>Customizable reminder / 可自定义提醒方式</li>
+        <li>Customizable reminder time / 可自定义提醒时间</li>
+        <li>Customizable reminder copy / 可自定义提醒文案</li>
+        </ul>
+      </p><br>
+
       <p><b>compatibility / 兼容性:</b>
       Compatible with all Jetbrains IDE products with build number 171 (IDEA 2017.1) or higher.<br>
       兼容所有产品编译号为171(IDEA 2017.1)以上的 Jetbrains IDE 产品。<br>
@@ -41,9 +52,9 @@
     <change-notes><![CDATA[
         <ul>
             <li>Customizable reminder image / 可自定义提醒图片</li>
-            <li>Customizable reminder / 可自定义提醒方式</li>
-            <li>Customizable reminder time / 可自定义提醒时间</li>
-            <li>Customizable reminder copy / 可自定义提醒文案</li>
+            <li>Customizable reminder type/ 可自定义提醒方式</li>
+            <li>Customizable reminder interval / 可自提示方式定义提醒时间</li>
+            <li>Customizable reminder text content / 可自定义提醒文案</li>
             <li>Automatically get daily Bing search beautiful pictures / 自动获取每日Bing搜索精美图片</li>
         </ul>
     ]]></change-notes>
@@ -99,4 +110,5 @@
             <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>
+
 </idea-plugin>
