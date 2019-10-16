@@ -44,7 +44,7 @@ public class ConfigState {
         /**
          * 使用插件自带默认图
          */
-        DEFAULT(0, "插件内置默认图(Plugin built-in Picture)"),
+        DEFAULT(0, "Built-in"),
 
         /**
          * 使用Bing搜索的图片
@@ -54,7 +54,7 @@ public class ConfigState {
         /**
          * 自定义本地图片
          */
-        CUSTOM(2, "选择本地图片(Select local image)");
+        CUSTOM(2, "Select local image");
 
         private static Map<String, ImageSrcTypeEnum> stringToEnum = new HashMap<>();
 

@@ -6,11 +6,12 @@
 
 Features 特性列表
 ----
-* [x] Reminder / 定时提醒
+* [x] Timed reminders / 定时提醒
 * [x] Customizable reminder pictures (support Bing daily photos) / 可自定义提醒图片(支持Bing每日美图)
-* [x] Customizable reminder / 可自定义提醒方式
-* [x] Customizable reminder time / 可自定义提醒时间
-* [x] Customizable reminder copy / 可自定义提醒文案
+* [x] Customizable reminder type / 可自定义提醒方式
+* [x] Customizable reminder interval / 可自定义提醒时间
+* [x] Customizable reminder text content / 可自定义提醒文案
+* [x] Automatically get daily Bing search beautiful pictures / 自动获取每日Bing搜索精美图片
 
 Installation / 安装
 ----
@@ -31,6 +32,8 @@ Additional tool / 附加工具
 ![opacity](doc/opacity.png)
 ![table](doc/table.png)
 
-
-TODO:
-- Increase Bing image daily refresh acquisition function / 增加Bing图片每日刷新获取功能
+Notes / 注意事项
+----
+- When running in sandbox mode, The following configurations are needed to ensure the validity of file paths in sandbox environments.
+<br> `PluginDefaultConfig. SANDBOX_MODE = true` <br>
+沙箱模式下运行时，需设置 `PluginDefaultConfig.SANDBOX_MODE = true` . 以保证沙箱环境下文件路径的有效性。
