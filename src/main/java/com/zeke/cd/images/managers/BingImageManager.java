@@ -89,7 +89,8 @@ public class BingImageManager extends BaseImageManager {
      * 初始化Bing图片模块
      */
     public void init() {
-        requestBingImage();
+        updaterTask.init();
+        //requestBingImage();
     }
 
     /**
@@ -195,7 +196,7 @@ public class BingImageManager extends BaseImageManager {
     }
 
     private class ImageUpdaterTask {
-        long checkPeriod = 6;
+        long checkPeriod = 1;
         //记录当前日期时间，用于不重启IDE的情况下更新每日图片
         private String currentDate = "";
         private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -213,7 +214,7 @@ public class BingImageManager extends BaseImageManager {
         public void restart() {
             destroy();
             ScheduledFuture scheduledFuture = JobScheduler.getScheduler()
-                    .scheduleWithFixedDelay(new CheckRunnable(),checkPeriod, checkPeriod, TimeUnit.HOURS);
+                    .scheduleWithFixedDelay(new CheckRunnable(),0, checkPeriod, TimeUnit.HOURS);
             SCHEDULED_FUTURE_CONTEXT.set(scheduledFuture);
         }
 

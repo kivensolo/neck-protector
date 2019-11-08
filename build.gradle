@@ -33,6 +33,7 @@ patchPluginXml {
       <ul>
         <li>v1.0 Init.</li>
         <li>v1.1 Automatically update Bing image every day.</li>
+        <li>v1.1.1 Fix bugs in version 1.1.</li>
       </ul>
       """
 }
