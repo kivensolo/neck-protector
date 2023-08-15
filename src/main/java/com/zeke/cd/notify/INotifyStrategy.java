@@ -10,7 +10,7 @@ import com.zeke.cd.images.OpenImageConsumer;
 import com.zeke.cd.service.ConfigState;
 import com.zeke.cd.service.IConfigService;
 import com.zeke.cd.settings.GlobalSettings;
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 /**
  * 打开图片的策略模式
@@ -30,7 +30,7 @@ public interface INotifyStrategy {
      *
      * @see ConfigState.RemindTypeEnum
      */
-    @NotNull
+//    @NotNull
     static INotifyStrategy getRemindStrategy(ConfigState.RemindTypeEnum type) {
         INotifyStrategy NotifyStrategy;
         switch (type) {
