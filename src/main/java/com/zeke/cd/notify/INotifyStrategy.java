@@ -33,6 +33,7 @@ public interface INotifyStrategy {
 //    @NotNull
     static INotifyStrategy getRemindStrategy(ConfigState.RemindTypeEnum type) {
         INotifyStrategy NotifyStrategy;
+        //noinspection EnhancedSwitchMigration
         switch (type) {
             case DIRECT:
                 NotifyStrategy = INSTANCE_REMIND_DIRECT;
@@ -76,21 +77,33 @@ public interface INotifyStrategy {
      */
     class RemindIndirect implements INotifyStrategy {
         private static Logger LOG = Logger.getInstance(RemindIndirect.class);
+        private NotificationGroup  notificationGroup;
+        public RemindIndirect() {
+            String displayId = "toast_" + GlobalSettings.PLUGIN_NAME;
+            NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
+            //TODO 重构 NotificationGroup的用法
+            notificationGroup = new NotificationGroup(displayId, displayType, true);
+        }
+
         /**
          * {@inheritDoc}
          */
         @Override
         public void msgNotify() {
-            String displayId = "Plugins " + GlobalSettings.PLUGIN_NAME;
-            NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
-            NotificationGroup notificationGroup = new NotificationGroup(displayId, displayType, true);
-
             ConfigState cs = IConfigService.getInstance().getState();
             Notification notification = obtainNotification(notificationGroup,
                                                            cs.getNotifyTitle(),
                                                            cs.getNotifyContent(),
-                                                           NotificationType.INFORMATION,
-                                                           null);
+                                                           NotificationType.INFORMATION);
+
+            // 如何注册displayId？
+            //NotificationGroup notificationGroupNew = NotificationGroupManager.getInstance().getNotificationGroup(displayId);
+            //Notification notification = obtainNotification(notificationGroupNew,
+            //        cs.getNotifyTitle(),
+            //        cs.getNotifyContent(),
+            //        NotificationType.INFORMATION);
+            //notification.setDisplayId(displayId);
+
             OpenImageAction openImageAction = new OpenImageAction(cs.getNotifyAction(), notification);
             notification.addAction(openImageAction);
             Notifications.Bus.notify(notification);
@@ -100,10 +113,8 @@ public interface INotifyStrategy {
         private Notification obtainNotification(NotificationGroup notifiGroup,
                                                 String notifyTitle,
                                                 String notifyContent,
-                                                NotificationType type,
-                                                NotificationListener listener) {
-            return notifiGroup.createNotification(notifyTitle, notifyContent,
-                                                type, listener);
+                                                NotificationType type) {
+            return notifiGroup.createNotification(notifyTitle, notifyContent, type);
         }
     }
 }
