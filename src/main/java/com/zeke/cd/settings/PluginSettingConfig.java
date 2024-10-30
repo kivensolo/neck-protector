@@ -51,7 +51,7 @@ public interface PluginSettingConfig {
      /**
      * 图片选择器的监听事件
      */
-    static BrowseFolderActionListener newBrowseFolderActionListener(TextFieldWithBrowseButton textField) {
+    static BrowseFolderActionListener<JTextField> newBrowseFolderActionListener(TextFieldWithBrowseButton textField) {
         return new BrowseFolderActionListener<JTextField>("Image URL", "Choose the picture you like",
                 textField, null,
                 PluginSettingConfig.IMAGE_FILE_CHOOSER,
@@ -59,12 +59,7 @@ public interface PluginSettingConfig {
             @NotNull
             @Override
             protected String chosenFileToResultingText(@NotNull VirtualFile chosenFile) {
-                try {
-                    // 选择图片时，返回文件完整的 URL 而不仅仅是 Path
-                    return VfsUtil.toUri(chosenFile).toURL().toString();
-                } catch (MalformedURLException e) {
-                    return PluginDefaultConfig.IMAGE_URL;
-                }
+                return chosenFile.getPath();
             }
         };
     }
