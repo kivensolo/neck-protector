@@ -14,6 +14,7 @@ intellij {
     version.set("2020.2.3")  //设置运行插件的IntelliJ的版本
     type.set("IC") // Target IDE Platform
     plugins.set(listOf(/* Plugin Dependencies */))
+//    plugins.set(listOf(/* Plugin Dependencies */))
 //    val pluginList = listOf("java", "android", "Kotlin","IntelliLang")
 //    plugins.set(pluginList)
 }
@@ -42,16 +43,20 @@ dependencies {
 //    options.encoding = "UTF-8"
 //}
 //
-//patchPluginXml {
-//    // Value of change-notes in plugin.xml file will be replaced.
-//    changeNotes """
-//      <ul>
-//        <li>v1.0 Init.</li>
-//        <li>v1.1 Automatically update Bing image every day.</li>
-//        <li>v1.1.1 Fix bugs in version 1.1.</li>
-//      </ul>
-//      """
-//}
+tasks.patchPluginXml{
+    pluginId.set("com.zeke.wong.neck-protect")
+    sinceBuild.set("202")
+    untilBuild.set("241.*")
+    version.set("1.1.2")
+    changeNotes.set("""
+      <ul>
+        <li>v1.0 Init.</li>
+        <li>v1.1 Automatically update Bing image every day.</li>
+        <li>v1.1.1 Fix bugs in version 1.1.</li>
+        <li>v1.1.2 Compatible with IDEA versions after 212.5457.46 (2021.2.3)</li>
+      </ul>
+      """)
+}
 
 //
 //tasks {

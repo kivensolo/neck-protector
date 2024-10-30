@@ -49,15 +49,7 @@
       </p><br>
      ]]></description>
 
-    <change-notes><![CDATA[
-        <ul>
-            <li>Customizable reminder image / 可自定义提醒图片</li>
-            <li>Customizable reminder type/ 可自定义提醒方式</li>
-            <li>Customizable reminder interval / 可自提示方式定义提醒时间</li>
-            <li>Customizable reminder text content / 可自定义提醒文案</li>
-            <li>Automatically get daily Bing search beautiful pictures / 自动获取每日Bing搜索精美图片</li>
-        </ul>
-    ]]></change-notes>
+    <change-notes/>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="202"/>
