@@ -27,7 +27,7 @@ public class ShowOpacityTableAction extends AnAction {
 
         DataManager.getInstance().getDataContextFromFocus()
                 .doWhenDone((Consumer<DataContext>) this::openHexOpacityPic)
-                .doWhenRejected((Consumer<String>) LOG::error);
+                .doWhenRejected(LOG::error);
 
     }
 

@@ -1,6 +1,7 @@
 package com.zeke.cd.images.managers;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
+
 import java.net.URL;
 
 public class DefaultImageManager extends BaseImageManager {
@@ -12,7 +13,7 @@ public class DefaultImageManager extends BaseImageManager {
         return instance != null ? instance : (instance = new DefaultImageManager());
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public URL getImageUrl() {
         mImageUrl = getDefaultUrl();

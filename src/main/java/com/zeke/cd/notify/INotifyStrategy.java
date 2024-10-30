@@ -65,7 +65,7 @@ public interface INotifyStrategy {
         public void msgNotify() {
             DataManager.getInstance().getDataContextFromFocus()
                     .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
-                    .doWhenRejected((Consumer<String>) LOG::error);
+                    .doWhenRejected(LOG::error);
         }
     }
 

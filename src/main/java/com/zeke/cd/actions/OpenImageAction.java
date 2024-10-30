@@ -37,7 +37,7 @@ public class OpenImageAction extends AnAction {
     public void actionPerformed(@NotNull AnActionEvent e) {
         DataManager.getInstance().getDataContextFromFocus()
                 .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
-                .doWhenRejected((Consumer<String>) LOG::error);
+                .doWhenRejected(LOG::error);
         // 使打开图片按钮失效，避免重复点击
         notification.expire();
         LOG.info("notification action has been expired");
