@@ -213,13 +213,13 @@ public class BingImageManager extends BaseImageManager {
 
         public void restart() {
             destroy();
-            ScheduledFuture scheduledFuture = JobScheduler.getScheduler()
+            ScheduledFuture<?> scheduledFuture = JobScheduler.getScheduler()
                     .scheduleWithFixedDelay(new CheckRunnable(),0, checkPeriod, TimeUnit.HOURS);
             SCHEDULED_FUTURE_CONTEXT.set(scheduledFuture);
         }
 
         private void destroy() {
-            ScheduledFuture existScheduledFuture = SCHEDULED_FUTURE_CONTEXT.get();
+            ScheduledFuture<?> existScheduledFuture = SCHEDULED_FUTURE_CONTEXT.get();
             if (existScheduledFuture != null) {
                 existScheduledFuture.cancel(true);
                 SCHEDULED_FUTURE_CONTEXT.remove();

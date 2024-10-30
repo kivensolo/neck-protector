@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2019/4/28 20:59 <br>
  */
 public class NotifyTask {
-    private static final ThreadLocal<ScheduledFuture> SCHEDULED_FUTURE_CONTEXT = new ThreadLocal<>();
+    private static final ThreadLocal<ScheduledFuture<?>> SCHEDULED_FUTURE_CONTEXT = new ThreadLocal<>();
 
     public static void init(){
         restart();
@@ -27,7 +27,7 @@ public class NotifyTask {
     public static void restart() {
         destroy();
         ConfigState configState = IConfigService.getInstance().getState();
-        ScheduledFuture scheduledFuture = JobScheduler.getScheduler().scheduleWithFixedDelay(new ToastRunnable(),
+        ScheduledFuture<?> scheduledFuture = JobScheduler.getScheduler().scheduleWithFixedDelay(new ToastRunnable(),
                 configState.getPeriodMinutes(), configState.getPeriodMinutes(), TimeUnit.MINUTES);
         SCHEDULED_FUTURE_CONTEXT.set(scheduledFuture);
     }
@@ -36,7 +36,7 @@ public class NotifyTask {
      * 注销定时提醒任务
      */
     private static void destroy() {
-        ScheduledFuture existScheduledFuture = SCHEDULED_FUTURE_CONTEXT.get();
+        ScheduledFuture<?> existScheduledFuture = SCHEDULED_FUTURE_CONTEXT.get();
         if (existScheduledFuture != null) {
             existScheduledFuture.cancel(true);
             SCHEDULED_FUTURE_CONTEXT.remove();
