@@ -3,6 +3,12 @@ plugins {
 //    id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.intellij")
 }
+repositories {
+    maven("https://maven.aliyun.com/repository/central")
+    maven("https://maven.aliyun.com/repository/public")
+    maven("https://maven.aliyun.com/repository/google")
+    mavenCentral()
+}
 
 intellij {
     version.set("2020.2.3")  //设置运行插件的IntelliJ的版本
@@ -15,6 +21,11 @@ intellij {
 java.sourceSets.main {
     this.java.srcDir("src/main/java")
 }
+
+dependencies {
+    implementation("org.jetbrains:annotations:24.0.0")
+}
+
 
 //group "com.zeke.wong"
 //version '1.1'
