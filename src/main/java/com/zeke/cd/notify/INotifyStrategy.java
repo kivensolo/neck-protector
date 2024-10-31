@@ -3,13 +3,16 @@ package com.zeke.cd.notify;
 import com.intellij.ide.DataManager;
 import com.intellij.notification.*;
 import com.intellij.openapi.actionSystem.DataContext;
+import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.util.AsyncResult;
 import com.intellij.util.Consumer;
 import com.zeke.cd.actions.OpenImageAction;
 import com.zeke.cd.images.OpenImageConsumer;
 import com.zeke.cd.service.ConfigState;
 import com.zeke.cd.service.IConfigService;
 import com.zeke.cd.settings.GlobalSettings;
+import com.zeke.cd.utils.Utils;
 //import org.jetbrains.annotations.NotNull;
 
 /**
@@ -64,9 +67,16 @@ public interface INotifyStrategy {
          */
         @Override
         public void msgNotify() {
-            DataManager.getInstance().getDataContextFromFocus()
-                    .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
-                    .doWhenRejected(LOG::error);
+            AsyncResult<DataContext> dataContextAsyncResult = DataManager.getInstance().getDataContextFromFocus()
+                    .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)));
+            String fullVersion = ApplicationInfo.getInstance().getFullVersion();
+            LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
+            boolean before202317 = Utils.isVersionLessOrEqu(fullVersion, "2023.1.7");
+            if(before202317){
+                dataContextAsyncResult.doWhenRejected((Consumer<String>) LOG::error);
+            }else{
+                dataContextAsyncResult.doWhenRejected(LOG::error);
+            }
         }
     }
 
@@ -81,7 +91,7 @@ public interface INotifyStrategy {
         public RemindIndirect() {
             String displayId = "toast_" + GlobalSettings.PLUGIN_NAME;
             NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
-            //TODO 重构 NotificationGroup的用法
+            //TODO  scheduled for removal API
             notificationGroup = new NotificationGroup(displayId, displayType, true);
         }
 
@@ -114,7 +124,16 @@ public interface INotifyStrategy {
                                                 String notifyTitle,
                                                 String notifyContent,
                                                 NotificationType type) {
-            return notifiGroup.createNotification(notifyTitle, notifyContent, type);
+            String fullVersion = ApplicationInfo.getInstance().getFullVersion();
+            LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
+            boolean before202101 = Utils.isVersionLessOrEqu(fullVersion, "2021.1.3");
+            if(before202101){
+                //This api will be scheduled for removal in a future release
+                //noinspection UnstableApiUsage
+                return notifiGroup.createNotification(notifyTitle, notifyContent, type, null);
+            }else{
+                return notifiGroup.createNotification(notifyTitle, notifyContent, type);
+            }
         }
     }
 }

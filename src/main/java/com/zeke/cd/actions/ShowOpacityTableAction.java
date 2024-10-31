@@ -5,14 +5,17 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileEditor.ex.FileEditorManagerEx;
 import com.intellij.openapi.fileEditor.impl.EditorWindow;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.AsyncResult;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.Consumer;
 import com.zeke.cd.images.managers.BaseImageManager;
+import com.zeke.cd.utils.Utils;
 
 import javax.swing.*;
 import java.net.URL;
@@ -25,10 +28,16 @@ public class ShowOpacityTableAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
 
-        DataManager.getInstance().getDataContextFromFocus()
-                .doWhenDone((Consumer<DataContext>) this::openHexOpacityPic)
-                .doWhenRejected(LOG::error);
-
+        AsyncResult<DataContext> dataContextAsyncResult = DataManager.getInstance().getDataContextFromFocus()
+                .doWhenDone((Consumer<DataContext>) this::openHexOpacityPic);
+        String fullVersion = ApplicationInfo.getInstance().getFullVersion();
+        LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
+        boolean before202317 = Utils.isVersionLessOrEqu(fullVersion, "2023.1.7");
+        if(before202317){
+            dataContextAsyncResult.doWhenRejected((Consumer<String>) LOG::error);
+        }else{
+            dataContextAsyncResult.doWhenRejected(LOG::error);
+        }
     }
 
     @SuppressWarnings("Duplicates")

@@ -106,4 +106,23 @@ public class Utils {
         });
         return stringBuilder.toString();
     }
+
+    public static boolean isVersionLessOrEqu(String version1, String version2) {
+        if(version1.equals(version2)) {
+            return true;
+        }
+        String[] v1 = version1.split("\\.");
+        String[] v2 = version2.split("\\.");
+        int len = Math.min(v1.length, v2.length);
+        for (int i = 0; i < len; i++) {
+            int n1 = Integer.parseInt(v1[i]);
+            int n2 = Integer.parseInt(v2[i]);
+            if (n1 < n2) {
+                return true;
+            } else if (n1 > n2) {
+                return false;
+            }
+        }
+        return v1.length < v2.length;
+    }
 }
