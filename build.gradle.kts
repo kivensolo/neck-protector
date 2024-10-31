@@ -11,8 +11,9 @@ repositories {
 }
 
 intellij {
-    version.set("2023.1.7")  //设置运行插件的IntelliJ的版本
-    type.set("IC") // Target IDE Platform
+//    version.set("2023.2")  //设置运行插件的IntelliJ的版本
+//    type.set("IC") // Target IDE Platform
+        localPath.set("D:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2023.2")
 //    plugins.set(listOf(/* Plugin Dependencies */))
 //    val pluginList = listOf("java", "android", "Kotlin","IntelliLang")
 //    plugins.set(pluginList)
@@ -41,9 +42,8 @@ dependencies {
 tasks{
     patchPluginXml{
         pluginId.set("com.zeke.wong.neck-protect")
-        sinceBuild.set("202")
-        untilBuild.set("231.*")
-        version.set("1.1.2")
+        sinceBuild.set("232.*")
+        version.set("1.1.232")
         changeNotes.set("""
           <ul>
             <li>v1.0 Init.</li>

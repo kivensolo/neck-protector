@@ -38,19 +38,9 @@ public class OpenImageAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        AsyncResult<DataContext> dataContextAsyncResult = DataManager.getInstance()
-                .getDataContextFromFocus()
-                .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)));
-
-        String fullVersion = ApplicationInfo.getInstance().getFullVersion();
-        LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
-        boolean before202317 = Utils.isVersionLessOrEqu(fullVersion, "2023.1.7");
-        if(before202317){
-            dataContextAsyncResult.doWhenRejected((Consumer<String>) LOG::error);
-        }else{
-            dataContextAsyncResult.doWhenRejected(LOG::error);
-        }
-
+        DataManager.getInstance().getDataContextFromFocus()
+                .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
+                .doWhenRejected(LOG::error);
         // 使打开图片按钮失效，避免重复点击
         notification.expire();
         LOG.info("notification action has been expired");
