@@ -43,6 +43,7 @@ tasks{
     patchPluginXml{
         pluginId.set("com.zeke.wong.neck-protect")
         sinceBuild.set("232.*")
+        untilBuild.set("241.*")
         version.set("1.1.232")
         changeNotes.set("""
           <ul>
