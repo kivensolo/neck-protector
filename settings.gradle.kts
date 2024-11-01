@@ -8,8 +8,8 @@ pluginManagement {
         maven("https://www.jetbrains.com/intellij-repository/releases")
         maven("https://www.jetbrains.com/intellij-repository/snapshots")
         gradlePluginPortal()
-        mavenCentral()
-        google()
+//        mavenCentral()
+//        google()
     }
     resolutionStrategy {
         eachPlugin {

@@ -7,15 +7,14 @@ repositories {
     maven("https://maven.aliyun.com/repository/central")
     maven("https://maven.aliyun.com/repository/public")
     maven("https://maven.aliyun.com/repository/google")
-    mavenCentral()
+//    mavenCentral()
 }
 
 intellij {
-    version.set("2023.1.7")  //设置运行插件的IntelliJ的版本
+    version.set("2022.2.1")  //设置运行插件的IntelliJ的版本
     type.set("IC") // Target IDE Platform
+//    localPath.set("G:\\GradleCache\\caches\\modules-2\\files-2.1\\com.jetbrains.intellij.idea\\ideaIC\\2023.1.7\\33fea784f8f3d29e870e5387877a2a01f48fffae\\ideaIC-2023.1.7")
 //    plugins.set(listOf(/* Plugin Dependencies */))
-//    val pluginList = listOf("java", "android", "Kotlin","IntelliLang")
-//    plugins.set(pluginList)
 }
 
 java.sourceSets.main {
@@ -26,24 +25,27 @@ dependencies {
     implementation("org.jetbrains:annotations:24.0.0")
 }
 
-//sourceCompatibility = 1.8
-//targetCompatibility = 1.8
-
 //dependencies {
 //    implementation("org.jetbrains:annotations:24.0.0")
 //    //    testImplementation("junit:junit:4.12")
 //}
 
-//tasks.withType(JavaCompile) {
-//    options.encoding = "UTF-8"
-//}
-//
 tasks{
+    // Set the JVM compatibility versions
+    withType<JavaCompile> {
+        sourceCompatibility = "11"
+        targetCompatibility = "11"
+        options.encoding = "UTF-8"
+    }
+//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+//        kotlinOptions.jvmTarget = "11"
+//    }
+
     patchPluginXml{
         pluginId.set("com.zeke.wong.neck-protect")
         sinceBuild.set("202")
-        untilBuild.set("231.*")
-        version.set("1.1.2")
+        untilBuild.set("222.*")
+        version.set("1.1.202-222")
         changeNotes.set("""
           <ul>
             <li>v1.0 Init.</li>
@@ -63,17 +65,3 @@ tasks{
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
-
-//
-//tasks {
-//    // Set the JVM compatibility versions
-//    withType<JavaCompile> {
-//        sourceCompatibility = "17"
-//        targetCompatibility = "17"
-//    }
-//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//        kotlinOptions.jvmTarget = "17"
-//    }
-//
-//
-//}
