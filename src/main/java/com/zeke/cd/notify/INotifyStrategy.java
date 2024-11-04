@@ -124,16 +124,7 @@ public interface INotifyStrategy {
                                                 String notifyTitle,
                                                 String notifyContent,
                                                 NotificationType type) {
-            String fullVersion = ApplicationInfo.getInstance().getFullVersion();
-            LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
-            boolean before202101 = Utils.isVersionLessOrEqu(fullVersion, "2021.1.3");
-            if(before202101){
-                //This api will be scheduled for removal in a future release
-                //noinspection UnstableApiUsage
-                return notifiGroup.createNotification(notifyTitle, notifyContent, type, null);
-            }else{
-                return notifiGroup.createNotification(notifyTitle, notifyContent, type);
-            }
+            return notifiGroup.createNotification(notifyTitle, notifyContent, type, null);
         }
     }
 }
