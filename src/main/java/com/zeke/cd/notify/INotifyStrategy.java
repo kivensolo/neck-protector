@@ -67,16 +67,9 @@ public interface INotifyStrategy {
          */
         @Override
         public void msgNotify() {
-            AsyncResult<DataContext> dataContextAsyncResult = DataManager.getInstance().getDataContextFromFocus()
-                    .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)));
-            String fullVersion = ApplicationInfo.getInstance().getFullVersion();
-            LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
-            boolean before202317 = Utils.isVersionLessOrEqu(fullVersion, "2023.1.7");
-            if(before202317){
-                dataContextAsyncResult.doWhenRejected((Consumer<String>) LOG::error);
-            }else{
-                dataContextAsyncResult.doWhenRejected(LOG::error);
-            }
+            DataManager.getInstance().getDataContextFromFocus()
+                    .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
+                    .doWhenRejected(LOG::error);
         }
     }
 
@@ -124,16 +117,7 @@ public interface INotifyStrategy {
                                                 String notifyTitle,
                                                 String notifyContent,
                                                 NotificationType type) {
-            String fullVersion = ApplicationInfo.getInstance().getFullVersion();
-            LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
-            boolean before202101 = Utils.isVersionLessOrEqu(fullVersion, "2021.1.3");
-            if(before202101){
-                //This api will be scheduled for removal in a future release
-                //noinspection UnstableApiUsage
-                return notifiGroup.createNotification(notifyTitle, notifyContent, type, null);
-            }else{
-                return notifiGroup.createNotification(notifyTitle, notifyContent, type);
-            }
+            return notifiGroup.createNotification(notifyTitle, notifyContent, type);
         }
     }
 }

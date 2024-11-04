@@ -26,30 +26,27 @@ dependencies {
     implementation("org.jetbrains:annotations:24.0.0")
 }
 
-//sourceCompatibility = 1.8
-//targetCompatibility = 1.8
-
-//dependencies {
-//    implementation("org.jetbrains:annotations:24.0.0")
-//    //    testImplementation("junit:junit:4.12")
-//}
-
-//tasks.withType(JavaCompile) {
-//    options.encoding = "UTF-8"
-//}
-//
 tasks{
+    // Set the JVM compatibility versions
+    withType<JavaCompile> {
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
+        options.encoding = "UTF-8"
+    }
+//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+//        kotlinOptions.jvmTarget = "17"
+//    }
     patchPluginXml{
         pluginId.set("com.zeke.wong.neck-protect")
-        sinceBuild.set("202")
+        sinceBuild.set("212")
         untilBuild.set("231.*")
-        version.set("1.1.2")
+        version.set("1.1.212-231")
         changeNotes.set("""
           <ul>
             <li>v1.0 Init.</li>
             <li>v1.1 Automatically update Bing image every day.</li>
             <li>v1.1.1 Fix bugs in version 1.1.</li>
-            <li>v1.1.2 Compatible with IDEA versions after 212.5457.46 (2021.2.3)</li>
+            <li>v1.1.212 Adjust IDEA compatibility range to 212-231*</li>
           </ul>
           """)
     }
@@ -63,17 +60,3 @@ tasks{
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
-
-//
-//tasks {
-//    // Set the JVM compatibility versions
-//    withType<JavaCompile> {
-//        sourceCompatibility = "17"
-//        targetCompatibility = "17"
-//    }
-//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//        kotlinOptions.jvmTarget = "17"
-//    }
-//
-//
-//}

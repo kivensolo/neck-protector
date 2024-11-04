@@ -27,17 +27,9 @@ public class ShowOpacityTableAction extends AnAction {
     private static final Logger LOG = Logger.getInstance(ShowOpacityTableAction.class);
     @Override
     public void actionPerformed(AnActionEvent e) {
-
-        AsyncResult<DataContext> dataContextAsyncResult = DataManager.getInstance().getDataContextFromFocus()
-                .doWhenDone((Consumer<DataContext>) this::openHexOpacityPic);
-        String fullVersion = ApplicationInfo.getInstance().getFullVersion();
-        LOG.info("obtainNotification, currenIDEAVersion=" + fullVersion);
-        boolean before202317 = Utils.isVersionLessOrEqu(fullVersion, "2023.1.7");
-        if(before202317){
-            dataContextAsyncResult.doWhenRejected((Consumer<String>) LOG::error);
-        }else{
-            dataContextAsyncResult.doWhenRejected(LOG::error);
-        }
+        DataManager.getInstance().getDataContextFromFocus()
+                .doWhenDone((Consumer<DataContext>) this::openHexOpacityPic)
+                .doWhenRejected(LOG::error);
     }
 
     @SuppressWarnings("Duplicates")
