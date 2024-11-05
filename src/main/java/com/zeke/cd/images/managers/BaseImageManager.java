@@ -11,6 +11,7 @@ import com.zeke.cd.utils.Utils;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
 
 /**
  * {@link ImageManager} 实现类
@@ -86,7 +87,8 @@ public abstract class BaseImageManager implements ImageManager {
             LOG.error("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
             throw new NullPointerException("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
         }
-        return plugin.getPath();
+        Path path = plugin.getPluginPath();
+        return path == null ? null : path.toFile();
     }
 
     public static URL getPluginJarFileURL(File pluginFilePath, String subPath) {
