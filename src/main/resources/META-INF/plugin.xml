@@ -31,19 +31,26 @@
       Compatible with all Jetbrains IDE products with build number 171 (IDEA 2017.1) or higher.<br>
       兼容所有产品编译号为171(IDEA 2017.1)以上的 Jetbrains IDE 产品。<br>
         <ul>
-        <li>Android Studio</li>
-        <li>IntelliJ IDEA</li>
-        <li>IntelliJ IDEA Community Edition</li>
-        <li>PhpStorm</li>
-        <li>WebStorm</li>
-        <li>PyCharm</li>
-        <li>PyCharm Community Edition</li>
-        <li>RubyMine</li>
-        <li>AppCode</li>
-        <li>CLion</li>
-        <li>DataGrip</li>
-        <li>Rider</li>
-        <li>...</li>
+        <li>Android Studio — Chipmunk | 2021.2.1 — Hedgehog | 2023.1.1 Patch 2</li>
+        <li>AppCode — 2021.2 — 2023.1.5</li>
+        <li>Aqua — build 212.0 — 231.*</li>
+        <li>CLion — 2021.2 — 2023.1.7</li>
+        <li>Code With Me Guest — build 212.0 — 231.*</li>
+        <li>DataGrip — 2021.2 — 2023.1.2</li>
+        <li>DataSpell — 2021.3 — 2023.1.6</li>
+        <li>GoLand — 2021.2 — 2023.1.6</li>
+        <li>IntelliJ IDEA Community — 2021.2 — 2023.1.7</li>
+        <li>IntelliJ IDEA Ultimate — 2021.2 — 2023.1.7</li>
+        <li>JetBrains Client — build 212.0 — 231.*</li>
+        <li>MPS — 2021.2 — 2022.3.3</li>
+        <li>PhpStorm — 2021.2 — 2023.1.6</li>
+        <li>PyCharm Community — 2021.2 — 2023.1.6</li>
+        <li>PyCharm Professional — 2021.2 — 2023.1.6</li>
+        <li>Rider — 2021.2 — 2023.1.7</li>
+        <li>RubyMine — 2021.2 — 2023.1.7</li>
+        <li>RustRover — build 212.0 — 231.*</li>
+        <li>WebStorm — 2021.2 — 2023.1.6</li>
+        <li>Writerside — build 212.0 — 231.*</li>
       </ul>
       </p>
       </p><br>
