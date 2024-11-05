@@ -1,13 +1,32 @@
+apply {
+    from("config.gradle.kts")
+}
+
 plugins {
     id("java")
-//    id("org.jetbrains.kotlin.jvm")
+    id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.intellij")
 }
+
+val ideVersion: String by extra
+val baseVersion: String by extra
+val javaVersion: String by extra
+val since: String by extra
+val until: String? by extra
+val mPluginName: String by extra
+val mPluginId: String by extra
+val mPluginVersion: String by extra
+
+
 repositories {
     maven("https://maven.aliyun.com/repository/central")
     maven("https://maven.aliyun.com/repository/public")
     maven("https://maven.aliyun.com/repository/google")
     mavenCentral()
+}
+
+kotlin {
+    jvmToolchain(8)
 }
 
 intellij {
@@ -25,34 +44,49 @@ java.sourceSets.main {
 
 dependencies {
     implementation("org.jetbrains:annotations:24.0.0")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
-//sourceCompatibility = 1.8
-//targetCompatibility = 1.8
-
-//dependencies {
-//    implementation("org.jetbrains:annotations:24.0.0")
-//    //    testImplementation("junit:junit:4.12")
-//}
-
-//tasks.withType(JavaCompile) {
-//    options.encoding = "UTF-8"
-//}
-//
 tasks{
+    // Set the JVM compatibility versions
+    withType<JavaCompile> {
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+        options.encoding = "UTF-8"
+
+        //Add -Xlint:deprecation to the compiler args for more details
+        options.compilerArgs.add("-Xlint:deprecation")
+    }
+
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+        kotlinOptions {
+            jvmTarget = javaVersion
+        }
+    }
+
     patchPluginXml{
-        pluginId.set("com.zeke.wong.neck-protect")
-        sinceBuild.set("232.*")
-        untilBuild.set("241.*")
-        version.set("1.1.232")
+        pluginId.set(mPluginId)
+        sinceBuild.set(since)
+        if(until.isNullOrEmpty()){
+            untilBuild.set(provider {  null })
+        } else {
+            untilBuild.set(until)
+        }
+        version.set(ideVersion)
         changeNotes.set("""
           <ul>
             <li>v1.0 Init.</li>
             <li>v1.1 Automatically update Bing image every day.</li>
             <li>v1.1.1 Fix bugs in version 1.1.</li>
-            <li>v1.1.2 Compatible with IDEA versions after 212.5457.46 (2021.2.3)</li>
+            <li>v1.1.202-211 Compiled with Java11 and Adjust IDEA compatibility range to 202-211.* .</li>
+            <li>v1.1.212-231 Compiled with Java17 and Adjust IDEA compatibility range to 212-231.*</li>
+            <li>v1.1.232-241 Adjust IDEA compatibility range to 232-241.*</li>
           </ul>
           """)
+    }
+
+    jar {
+        archiveFileName.set("neck_protect_${mPluginVersion}.jar")
     }
 
     signPlugin {
@@ -64,17 +98,3 @@ tasks{
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
-
-//
-//tasks {
-//    // Set the JVM compatibility versions
-//    withType<JavaCompile> {
-//        sourceCompatibility = "17"
-//        targetCompatibility = "17"
-//    }
-//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//        kotlinOptions.jvmTarget = "17"
-//    }
-//
-//
-//}

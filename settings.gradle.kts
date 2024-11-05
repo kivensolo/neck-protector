@@ -1,3 +1,7 @@
+apply{
+    from("config.gradle.kts")
+}
+
 rootProject.name = "neck-protect"
 
 pluginManagement {
@@ -14,8 +18,14 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             when (requested.id.id) {
+                "org.jetbrains.kotlin.jvm" -> {
+                    useVersion("${settings.extra["kotlinVersion"]}")
+                }
+                "org.jetbrains.kotlin" -> {
+                    useVersion("${settings.extra["kotlinVersion"]}")
+                }
                 "org.jetbrains.intellij" -> {
-                    useVersion("1.13.3")
+                    useVersion("${settings.extra["ideaPluginVersion"]}")
                 }
             }
         }
