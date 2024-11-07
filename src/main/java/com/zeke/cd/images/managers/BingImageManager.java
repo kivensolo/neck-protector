@@ -219,6 +219,7 @@ public class BingImageManager extends BaseImageManager {
         }
 
         private void destroy() {
+            this.currentDate = "";
             ScheduledFuture<?> existScheduledFuture = SCHEDULED_FUTURE_CONTEXT.get();
             if (existScheduledFuture != null) {
                 existScheduledFuture.cancel(true);
