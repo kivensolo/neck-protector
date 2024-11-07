@@ -52,17 +52,21 @@ public abstract class BaseImageManager implements ImageManager {
     /**
      * 从插件 jar 中获取默认图片
      *
-     * <p>默认图片地址是 "jar:file://{@code ${pluginPath}}/neck-protector.jar!/images/shaking_head.jpg"</p>
+     * <p>默认图片地址是 "jar:file://{@code ${pluginPath}}/{plugin-name}.jar!/images/shaking_head.jpg"</p>
      *
      */
     public static URL getDefaultUrl() {
-        File pluginPath = getPluginFilePath();
+        File pluginJarFile = getPluginFilePath();
         if(PluginDefaultConfig.SANDBOX_MODE){
-            //沙箱模式下插件jar包路径: $APPLICATION_PLUGINS_DIR$\neck-protect\lib\neck-protect.jar
-            pluginPath = new File(Utils.join(File.separator,new String[]{pluginPath.getAbsolutePath(),"lib","neck-protect.jar"}));
+            String absolutePluginPath = pluginJarFile.getAbsolutePath();
+            pluginJarFile = new File(Utils.join(File.separator,new String[]{absolutePluginPath,"lib","neck-protect.jar"}));
+            if(!pluginJarFile.exists()){
+                //插件路径下没neck-protect.jar，则可能是新版的沙箱模式环境
+                pluginJarFile = new File(Utils.join(File.separator,new String[]{absolutePluginPath,"lib","instrumented-neck-protect.jar"}));
+            }
         }
-        LOG.info("getDefaultUrl  getPlugin path ==== " + pluginPath.getAbsolutePath());
-        return getPluginJarFileURL(pluginPath, "!/images/shaking_head.jpg");
+        LOG.info("getDefaultUrl  getPlugin path ==== " + pluginJarFile.getAbsolutePath());
+        return getPluginJarFileURL(pluginJarFile, "!/images/shaking_head.jpg");
     }
 
     /**
@@ -91,7 +95,7 @@ public abstract class BaseImageManager implements ImageManager {
 
     public static URL getPluginJarFileURL(File pluginFilePath, String subPath) {
         try {
-            return new URL("jar:" + pluginFilePath.toURI().toURL().toString() + subPath);
+            return new URL("jar:" + pluginFilePath.toURI().toURL() + subPath);
         } catch (MalformedURLException e) {
             LOG.error("fail to get the file Url", e);
             throw new RuntimeException("fail to get file Url:", e);
