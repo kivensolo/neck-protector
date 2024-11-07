@@ -22,7 +22,7 @@ repositories {
     maven("https://maven.aliyun.com/repository/central")
     maven("https://maven.aliyun.com/repository/public")
     maven("https://maven.aliyun.com/repository/google")
-    mavenCentral()
+//    mavenCentral()
 }
 
 kotlin {
@@ -38,8 +38,14 @@ intellij {
 //    plugins.set(pluginList)
 }
 
-java.sourceSets.main {
-    this.java.srcDir("src/main/java")
+java {
+    sourceSets.main {
+        this.java.srcDir("src/main/java")
+    }
+
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(javaVersion)
+    }
 }
 
 dependencies {
@@ -55,7 +61,7 @@ tasks{
         options.encoding = "UTF-8"
 
         //Add -Xlint:deprecation to the compiler args for more details
-        options.compilerArgs.add("-Xlint:deprecation")
+//        options.compilerArgs.add("-Xlint:deprecation")
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
