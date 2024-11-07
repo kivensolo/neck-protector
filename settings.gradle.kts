@@ -15,7 +15,7 @@ pluginManagement {
         eachPlugin {
             when (requested.id.id) {
                 "org.jetbrains.intellij" -> {
-                    useVersion("1.13.3")
+                    useVersion("1.15.0")
                 }
             }
         }
