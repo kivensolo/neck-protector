@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.intellij")
 }
 
-ext.set("plugin_version","1.1.212-231")
+ext.set("plugin_version","1.1.1_003")
 
 repositories {
     maven("https://maven.aliyun.com/repository/central")
@@ -14,7 +14,7 @@ repositories {
 }
 
 intellij {
-    version.set("2023.1.7")  //设置运行插件的IntelliJ的版本
+    version.set("2021.2.3")  //设置运行插件的IntelliJ的版本
     type.set("IC") // Target IDE Platform
 //    plugins.set(listOf(/* Plugin Dependencies */))
 //    val pluginList = listOf("java", "android", "Kotlin","IntelliLang")
@@ -22,7 +22,6 @@ intellij {
 }
 
 java.sourceSets.main {
-    this.java.srcDir("src/main/java")
 }
 
 dependencies {
@@ -32,17 +31,15 @@ dependencies {
 tasks{
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
+        sourceCompatibility = "11"
+        targetCompatibility = "11"
         options.encoding = "UTF-8"
     }
-//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//        kotlinOptions.jvmTarget = "17"
-//    }
+
     patchPluginXml{
         pluginId.set("com.zeke.wong.neck-protect")
-        sinceBuild.set("212")
-        untilBuild.set("231.*")
+        sinceBuild.set("212.4746.92")
+        untilBuild.set("222.*")
         version.set(ext.get("plugin_version") as String)
         changeNotes.set("""
           <ul>
@@ -50,7 +47,7 @@ tasks{
             <li>v1.1 Automatically update Bing image every day.</li>
             <li>v1.1.1 Fix bugs in version 1.1.</li>
             <li>v1.1.202-211 Compiled with Java11 and Adjust IDEA compatibility range to 202-211.* .</li>
-            <li>v1.1.212-231 Compiled with Java17 and Adjust IDEA compatibility range to 212-231.*</li>
+            <li>v1.1.1_003 Adjust IDEA compatibility range to 2021.2(212.4746.92)-2022.2.*(222.*)</li>
           </ul>
           """)
     }
