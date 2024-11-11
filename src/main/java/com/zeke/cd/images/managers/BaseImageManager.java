@@ -11,6 +11,7 @@ import com.zeke.cd.utils.Utils;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
 
 /**
  * {@link ImageManager} 实现类
@@ -41,12 +42,10 @@ public abstract class BaseImageManager implements ImageManager {
     public abstract URL getImageUrl();
 
     public static URL getHexComparisonPicUrl() {
-        File pluginPath = getPluginFilePath();
-         if(PluginDefaultConfig.SANDBOX_MODE){
-            //沙箱模式下插件jar包路径: $APPLICATION_PLUGINS_DIR$\neck-protect\lib\neck-protect.jar
-            pluginPath = new File(Utils.join(File.separator,new String[]{pluginPath.getAbsolutePath(),"lib","neck-protect.jar"}));
-        }
-        return getPluginJarFileURL(pluginPath, "!/images/opacity-comparison-table/hex.png");
+        return getInnerImageURL(
+                getNeckProtectJarFilePath(),
+                "!/images/opacity-comparison-table/hex.png"
+        );
     }
 
     /**
@@ -56,13 +55,24 @@ public abstract class BaseImageManager implements ImageManager {
      *
      */
     public static URL getDefaultUrl() {
-        File pluginPath = getPluginFilePath();
+        return getInnerImageURL(
+                getNeckProtectJarFilePath(),
+                "!/images/coastline.jpg"
+        );
+    }
+
+    private static File getNeckProtectJarFilePath() {
+        File pluginJarPath = getPluginFilePath();
         if(PluginDefaultConfig.SANDBOX_MODE){
+            String path = pluginJarPath.getAbsolutePath();
             //沙箱模式下插件jar包路径: $APPLICATION_PLUGINS_DIR$\neck-protect\lib\neck-protect.jar
-            pluginPath = new File(Utils.join(File.separator,new String[]{pluginPath.getAbsolutePath(),"lib","neck-protect.jar"}));
+            pluginJarPath = new File(Utils.join(File.separator,new String[]{path,"lib","neck-protect.jar"}));
+            if(!pluginJarPath.exists()){
+                //插件jar包不存在，说明是沙箱模式，使用插件的插件jar包
+                pluginJarPath = new File(Utils.join(File.separator,new String[]{path,"lib","instrumented-neck-protect.jar"}));
+            }
         }
-        LOG.info("getDefaultUrl  getPlugin path ==== " + pluginPath.getAbsolutePath());
-        return getPluginJarFileURL(pluginPath, "!/images/shaking_head.jpg");
+        return pluginJarPath;
     }
 
     /**
@@ -86,12 +96,14 @@ public abstract class BaseImageManager implements ImageManager {
             LOG.error("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
             throw new NullPointerException("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
         }
-        return plugin.getPath();
+        Path path = plugin.getPluginPath();
+        return path == null ? null : path.toFile();
     }
 
-    public static URL getPluginJarFileURL(File pluginFilePath, String subPath) {
+    private static URL getInnerImageURL(File prefixPath, String subPath) {
         try {
-            return new URL("jar:" + pluginFilePath.toURI().toURL().toString() + subPath);
+            LOG.info("getInnerImageURL：" + prefixPath.getAbsolutePath());
+            return new URL("jar:" + prefixPath.toURI().toURL() + subPath);
         } catch (MalformedURLException e) {
             LOG.error("fail to get the file Url", e);
             throw new RuntimeException("fail to get file Url:", e);
