@@ -1,5 +1,6 @@
 package com.zeke.cd.service;
 
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.util.xmlb.annotations.OptionTag;
 import com.zeke.cd.images.managers.BaseImageManager;
 import com.zeke.cd.images.managers.CustomImageManager;
@@ -21,6 +22,7 @@ import java.util.stream.Stream;
  * @since 2019-04-28
  */
 public class ConfigState {
+    private static final Logger LOG = Logger.getInstance(ConfigState.class);
     @OptionTag
     private Integer imageSrcType;
     @OptionTag
@@ -171,12 +173,17 @@ public class ConfigState {
 
         ImageSrcTypeEnum typeEnum = ImageSrcTypeEnum.valueOf(imageSrcType);
         BaseImageManager imageManager = BaseImageManager.getImageManagerFactory().create(typeEnum);
-        if(imageManager instanceof CustomImageManager){
-            //更新自定义图片的URL
-            ((CustomImageManager)imageManager).setImageUrl(settingView.getImageUrlFromBrowseButton());
-        }
-
         URL imageUrl = imageManager.getImageUrl();
+        LOG.info("setImageSrcType to ===> " + typeEnum.description.toUpperCase());
+        if(imageManager instanceof CustomImageManager){
+            String newImageUrl = settingView.getImageUrlFromBrowseButton();
+            if(imageUrl!= null && !imageUrl.toString().equals(newImageUrl)){
+                LOG.info("Picture changed! update custom picture:" + newImageUrl);
+                ((CustomImageManager)imageManager).setImageUrl(newImageUrl);
+                imageUrl = imageManager.getImageUrl();
+            }
+        }
+        LOG.info("imageUrl="+imageUrl);
         if(imageUrl != null){
             setRemindImageUrl(imageUrl.toString());
         }
