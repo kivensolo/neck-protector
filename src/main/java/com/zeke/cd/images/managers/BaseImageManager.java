@@ -51,13 +51,13 @@ public abstract class BaseImageManager implements ImageManager {
     /**
      * 从插件 jar 中获取默认图片
      *
-     * <p>默认图片地址是 "jar:file://{@code ${pluginPath}}/neck-protector.jar!/images/shaking_head.jpg"</p>
+     * <p>默认图片地址是 "jar:file://{@code ${pluginPath}}/neck-protector.jar!/images/coastine.jpg"</p>
      *
      */
     public static URL getDefaultUrl() {
         return getInnerImageURL(
                 getNeckProtectJarFilePath(),
-                "!/images/shaking_head.jpg"
+                "!/images/coastline.jpg"
         );
     }
 
