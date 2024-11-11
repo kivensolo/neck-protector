@@ -15,19 +15,4 @@ pluginManagement {
         mavenCentral()
         google()
     }
-    resolutionStrategy {
-        eachPlugin {
-            when (requested.id.id) {
-                "org.jetbrains.kotlin.jvm" -> {
-                    useVersion("${settings.extra["kotlinVersion"]}")
-                }
-                "org.jetbrains.kotlin" -> {
-                    useVersion("${settings.extra["kotlinVersion"]}")
-                }
-                "org.jetbrains.intellij" -> {
-                    useVersion("${settings.extra["ideaPluginVersion"]}")
-                }
-            }
-        }
-    }
 }

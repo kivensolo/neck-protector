@@ -4,8 +4,8 @@ apply {
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm")
-    id("org.jetbrains.intellij")
+    id("org.jetbrains.kotlin.jvm") version "1.8.20"
+    id("org.jetbrains.intellij") version "1.11.0"
 }
 
 val ideVersion: String by extra
@@ -44,7 +44,7 @@ java {
     }
 
     toolchain {
-        languageVersion = JavaLanguageVersion.of(javaVersion)
+        languageVersion.set(JavaLanguageVersion.of(javaVersion))
     }
 }
 
@@ -54,6 +54,11 @@ dependencies {
 }
 
 tasks{
+    // Avoid execution failed for task ‘:buildSearchableOptions’
+    buildSearchableOptions{
+        enabled=false
+    }
+
     // Set the JVM compatibility versions
     withType<JavaCompile> {
         sourceCompatibility = javaVersion
