@@ -1,5 +1,6 @@
 package com.zeke.cd.images.managers;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -20,9 +21,14 @@ public class CustomImageManager extends BaseImageManager {
         return mImageUrl;
     }
 
+    /**
+     * 设置自定义图片的图片地址
+     * @param url 图片绝对地址
+     */
     public void setImageUrl(String url){
         try {
-            mImageUrl = new URL(url);
+            File file = new File(url);
+            mImageUrl = file.toURI().toURL();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
