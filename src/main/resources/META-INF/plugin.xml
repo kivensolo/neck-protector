@@ -68,7 +68,14 @@
     <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable groupId="other" instance="com.zeke.cd.settings.PluginSettingPage"/>
+        <!-- 通过com.intellij.applicationConfigurable的EP来声明application的配置
+            支持属性参见：https://plugins.jetbrains.com/docs/intellij/settings-guide.html#settings-declaration-attributes
+          -->
+        <applicationConfigurable
+                parentId="other"
+                id="com.zeke.wong.neck-protect"
+                instance="com.zeke.cd.settings.PluginSettingPage"
+                displayName="NeckProtector"/>
 
         <!--href="https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_services.html-->
         <!-- Declare the application level service -->
