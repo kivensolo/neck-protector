@@ -84,8 +84,10 @@ public interface INotifyStrategy {
         public RemindIndirect() {
             String displayId = "toast_" + GlobalSettings.PLUGIN_NAME;
             NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
-            //TODO  scheduled for removal API
+            //FIXEM   scheduled for removal API
             notificationGroup = new NotificationGroup(displayId, displayType, true);
+            //TODO 如何注册displayId？
+            //notificationGroup = NotificationGroupManager.getInstance().getNotificationGroup(displayId);
         }
 
         /**
@@ -98,15 +100,6 @@ public interface INotifyStrategy {
                                                            cs.getNotifyTitle(),
                                                            cs.getNotifyContent(),
                                                            NotificationType.INFORMATION);
-
-            // 如何注册displayId？
-            //NotificationGroup notificationGroupNew = NotificationGroupManager.getInstance().getNotificationGroup(displayId);
-            //Notification notification = obtainNotification(notificationGroupNew,
-            //        cs.getNotifyTitle(),
-            //        cs.getNotifyContent(),
-            //        NotificationType.INFORMATION);
-            //notification.setDisplayId(displayId);
-
             OpenImageAction openImageAction = new OpenImageAction(cs.getNotifyAction(), notification);
             notification.addAction(openImageAction);
             Notifications.Bus.notify(notification);
