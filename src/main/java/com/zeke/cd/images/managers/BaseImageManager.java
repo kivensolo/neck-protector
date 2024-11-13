@@ -68,7 +68,8 @@ public abstract class BaseImageManager implements ImageManager {
             //沙箱模式下插件jar包路径: $APPLICATION_PLUGINS_DIR$\neck-protect\lib\neck-protect.jar
             pluginJarPath = new File(Utils.join(File.separator,new String[]{path,"lib","neck-protect.jar"}));
             if(!pluginJarPath.exists()){
-                //插件jar包不存在，说明是沙箱模式，使用插件的插件jar包
+                LOG.info("neck-protect.jar is not exist in idea-sandbox/plugins director.!");
+                //插件jar包不存在，进行兼容性查找
                 pluginJarPath = new File(Utils.join(File.separator,new String[]{path,"lib","instrumented-neck-protect.jar"}));
             }
         }

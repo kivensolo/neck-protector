@@ -51,7 +51,7 @@ tasks{
     }
 
     jar {
-        archiveFileName.set("neck_protect_${ext.get("plugin_version") as String}.jar")
+        archiveFileName.set("neck-protect.jar")
     }
 
     signPlugin {

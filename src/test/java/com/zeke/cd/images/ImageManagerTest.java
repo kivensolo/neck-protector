@@ -10,6 +10,7 @@ import java.net.URL;
 /**
  * ImageManagerTest
  */
+@SuppressWarnings("ALL")
 public class ImageManagerTest extends LightPlatformCodeInsightFixtureTestCase {
 
     public void testGetDefaultInstance() {
