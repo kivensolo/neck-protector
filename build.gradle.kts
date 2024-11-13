@@ -1,22 +1,20 @@
 plugins {
     id("java")
-//    id("org.jetbrains.kotlin.jvm")
-    id("org.jetbrains.intellij")
+    id("org.jetbrains.intellij") version("1.11.0")
 }
 
-ext.set("plugin_version","1.1.1_004")
+ext.set("plugin_version","1.1.4")
 
 repositories {
     maven("https://maven.aliyun.com/repository/central")
     maven("https://maven.aliyun.com/repository/public")
     maven("https://maven.aliyun.com/repository/google")
-//    mavenCentral()
+    mavenCentral()
 }
 
 intellij {
-//    version.set("2023.1.7")  //设置运行插件的IntelliJ的版本
-//    type.set("IC") // Target IDE Platform
-    localPath.set("D:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1.3")
+    version.set("2023.1.7")  //设置运行插件的IntelliJ的版本
+    type.set("IC") // Target IDE Platform
 }
 
 java.sourceSets.main {
@@ -34,13 +32,11 @@ tasks{
         targetCompatibility = "17"
         options.encoding = "UTF-8"
     }
-//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//        kotlinOptions.jvmTarget = "17"
-//    }
+
     patchPluginXml{
         pluginId.set("com.zeke.wong.neck-protect")
-        sinceBuild.set("2022.1")
-        untilBuild.set("2023.1.7")
+        sinceBuild.set("221")
+        untilBuild.set("231.9423.9")
         version.set(ext.get("plugin_version") as String)
         changeNotes.set("""
           <ul>
@@ -49,7 +45,7 @@ tasks{
             <li>v1.1.1 Fix bugs in version 1.1.</li>
             <li>v1.1.1_002 Compiled with Java11 and Adjust compatibility range to 202-211.* .</li>
             <li>v1.1.1_003 Adjust compatibility range to 2021.2(212.4746.92)-2022.2.*(222.*)</li>
-            <li>v1.1.1_004 Compiled with Java17 and Adjust compatibility range to 2022.1(221.5080.210)-2023.1.7(231.9423.9)</li>
+            <li>v1.1.4 Compiled with Java17 and Adjust compatibility range to 2022.1(221.5080.210)-2023.1.7(231.9423.9)</li>
           </ul>
           """)
     }

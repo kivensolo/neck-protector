@@ -11,13 +11,4 @@ pluginManagement {
         mavenCentral()
         google()
     }
-    resolutionStrategy {
-        eachPlugin {
-            when (requested.id.id) {
-                "org.jetbrains.intellij" -> {
-                    useVersion("1.15.0")
-                }
-            }
-        }
-    }
 }
