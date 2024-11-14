@@ -213,6 +213,7 @@ public class BingImageManager extends BaseImageManager {
 
         public void restart() {
             destroy();
+            this.currentDate = "";
             ScheduledFuture<?> scheduledFuture = JobScheduler.getScheduler()
                     .scheduleWithFixedDelay(new CheckRunnable(),0, checkPeriod, TimeUnit.HOURS);
             SCHEDULED_FUTURE_CONTEXT.set(scheduledFuture);
