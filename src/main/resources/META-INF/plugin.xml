@@ -85,6 +85,10 @@
          <!-- Declare the project level service -->
         <!--<projectService serviceInterface="Mypackage.MyProjectService"
                   serviceImplementation="Mypackage.MyProjectServiceImpl" />-->
+        <!-- 2020.3后, Notification的使用  key属性为可选的，表示在设置窗口中的显示名称 -->
+        <notificationGroup id="NeckProtector_NOTIFY"
+                           displayType="STICKY_BALLOON"
+                           key="notification.Zeke"/>
     </extensions>
 
     <actions>

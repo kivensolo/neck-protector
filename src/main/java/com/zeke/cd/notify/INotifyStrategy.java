@@ -82,10 +82,12 @@ public interface INotifyStrategy {
         private static Logger LOG = Logger.getInstance(RemindIndirect.class);
         private NotificationGroup  notificationGroup;
         public RemindIndirect() {
-            String displayId = "toast_" + GlobalSettings.PLUGIN_NAME;
-            NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
-            //TODO  scheduled for removal API
-            notificationGroup = new NotificationGroup(displayId, displayType, true);
+            NotificationGroupManager manager = NotificationGroupManager.getInstance();
+            if (manager == null) {
+                return;
+            }
+            //group-id由扩展点定义
+            notificationGroup = manager.getNotificationGroup("NeckProtector_NOTIFY");
         }
 
         /**
@@ -98,15 +100,6 @@ public interface INotifyStrategy {
                                                            cs.getNotifyTitle(),
                                                            cs.getNotifyContent(),
                                                            NotificationType.INFORMATION);
-
-            // 如何注册displayId？
-            //NotificationGroup notificationGroupNew = NotificationGroupManager.getInstance().getNotificationGroup(displayId);
-            //Notification notification = obtainNotification(notificationGroupNew,
-            //        cs.getNotifyTitle(),
-            //        cs.getNotifyContent(),
-            //        NotificationType.INFORMATION);
-            //notification.setDisplayId(displayId);
-
             OpenImageAction openImageAction = new OpenImageAction(cs.getNotifyAction(), notification);
             notification.addAction(openImageAction);
             Notifications.Bus.notify(notification);
