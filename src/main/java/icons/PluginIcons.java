@@ -15,6 +15,6 @@ import javax.swing.*;
 public class PluginIcons{
 
     public static final class Actions {
-        public static final Icon ZEKE_HEX = IconLoader.getIcon("/icons/color_table.png");
+        public static final Icon ZEKE_HEX = IconLoader.getIcon("/icons/color_table.png", PluginIcons.class.getClassLoader());
     }
 }
