@@ -49,7 +49,7 @@ tasks{
             <li>v1.0 Init.</li>
             <li>v1.1 Automatically update Bing image every day.</li>
             <li>v1.1.1 Fix bugs in version 1.1.</li>
-            <li>v1.1.202-211 Compiled with Java11 and Adjust IDEA compatibility range to 202-211.* .</li>
+            <li>v1.1.2 Compiled with Java11 and Adjust Intellij Platform 202-211.* .</li>
           </ul>
           """)
     }
