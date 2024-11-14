@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.intellij")
 }
 
-ext.set("plugin_version","1.1.202-211")
+ext.set("plugin_version","1.1.2")
 
 repositories {
     maven("https://maven.aliyun.com/repository/central")
@@ -55,7 +55,7 @@ tasks{
     }
 
     jar {
-        archiveFileName.set("neck_protect_${ext.get("plugin_version") as String}.jar")
+        archiveFileName.set("neck-protect.jar")
     }
 
     signPlugin {
