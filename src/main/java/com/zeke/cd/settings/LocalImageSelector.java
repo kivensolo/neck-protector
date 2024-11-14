@@ -25,25 +25,13 @@ public interface LocalImageSelector {
     List<String> MIME_OF_IMAGE = Arrays.asList("jpg", "jpeg", "png", "bmp", "gif");
 
     /**
-     * 支持的图片格式的拼接字符串，用于弹窗提示
-     */
-    String IMAGE_EXTENSION_LIST_STR = String.join("、", MIME_OF_IMAGE);
-
-    /**
      * 文件选择器的描述对象
      * 控制哪些文件被选中，这里限制文件为图片。
      */
-    FileChooserDescriptor IMAGE_FILE_CHOOSER = new FileChooserDescriptor(true, false, false, false, false, false) {
-        @Override
-        public void validateSelectedFiles(VirtualFile[] files) throws Exception {
-            super.validateSelectedFiles(files);
-            for (VirtualFile file : files) {
-                if (!MIME_OF_IMAGE.contains(file.getExtension())) {
-                    throw new IllegalArgumentException("Please select a image file, support:" + IMAGE_EXTENSION_LIST_STR);
-                }
-            }
-        }
-    };
+    FileChooserDescriptor IMAGE_FILE_CHOOSER = new FileChooserDescriptor(
+            true, false, false,
+            false, false, false)
+            .withFileFilter(virtualFile -> MIME_OF_IMAGE.contains(virtualFile.getExtension()));
 
     /**
      * Create an ActionListener
@@ -54,6 +42,7 @@ public interface LocalImageSelector {
         return actionEvent -> {
             LocalImageSelector.IMAGE_FILE_CHOOSER.setTitle("Image URL");
             LocalImageSelector.IMAGE_FILE_CHOOSER.setDescription("Choose the picture you like");
+
             VirtualFile chosenImageFile = FileChooser.chooseFile(
                     LocalImageSelector.IMAGE_FILE_CHOOSER,
                     ProjectManager.getInstance().getDefaultProject(),
