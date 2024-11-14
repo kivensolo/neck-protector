@@ -2,17 +2,13 @@ package com.zeke.cd.notify;
 
 import com.intellij.ide.DataManager;
 import com.intellij.notification.*;
-import com.intellij.openapi.actionSystem.DataContext;
-import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.util.AsyncResult;
-import com.intellij.util.Consumer;
 import com.zeke.cd.actions.OpenImageAction;
 import com.zeke.cd.images.OpenImageConsumer;
 import com.zeke.cd.service.ConfigState;
 import com.zeke.cd.service.IConfigService;
 import com.zeke.cd.settings.GlobalSettings;
-import com.zeke.cd.utils.Utils;
+
 //import org.jetbrains.annotations.NotNull;
 
 /**
@@ -67,9 +63,9 @@ public interface INotifyStrategy {
          */
         @Override
         public void msgNotify() {
-            DataManager.getInstance().getDataContextFromFocus()
-                    .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
-                    .doWhenRejected(LOG::error);
+            DataManager.getInstance().getDataContextFromFocusAsync()
+                            .onSuccess(dataContext -> new OpenImageConsumer().accept(dataContext))
+                            .onError(LOG::error);
         }
     }
 
