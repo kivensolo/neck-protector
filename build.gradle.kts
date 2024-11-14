@@ -25,17 +25,9 @@ repositories {
 //    mavenCentral()
 }
 
-kotlin {
-    jvmToolchain(8)
-}
-
 intellij {
-//    version.set("2023.2")  //设置运行插件的IntelliJ的版本
-//    type.set("IC") // Target IDE Platform
-        localPath.set("D:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2023.2")
-//    plugins.set(listOf(/* Plugin Dependencies */))
-//    val pluginList = listOf("java", "android", "Kotlin","IntelliLang")
-//    plugins.set(pluginList)
+    version.set("2024.3")
+    type.set("IC")
 }
 
 java {
@@ -83,21 +75,21 @@ tasks{
         } else {
             untilBuild.set(until)
         }
-        version.set(ideVersion)
+        version.set(mPluginVersion)
         changeNotes.set("""
           <ul>
             <li>v1.0 Init.</li>
             <li>v1.1 Automatically update Bing image every day.</li>
             <li>v1.1.1 Fix bugs in version 1.1.</li>
-            <li>v1.1.202-211 Compiled with Java11 and Adjust IDEA compatibility range to 202-211.* .</li>
-            <li>v1.1.212-231 Compiled with Java17 and Adjust IDEA compatibility range to 212-231.*</li>
-            <li>v1.1.232-241 Adjust IDEA compatibility range to 232-241.*</li>
+            <li>v1.1.2 Adjust Intellij Platform 202-211.* .</li>
+            <li>v1.1.3 Adjust Intellij Platform 212-231.*</li>
+            <li>v1.1.4 Adjust Intellij Platform to 2024.3(243.21565.193)</li>
           </ul>
           """)
     }
 
     jar {
-        archiveFileName.set("neck_protect_${mPluginVersion}.jar")
+        archiveFileName.set("neck-protect.jar")
     }
 
     signPlugin {
