@@ -28,7 +28,7 @@ public class ShowOpacityTableAction extends AnAction {
                 .onError(LOG::error);
     }
 
-    @SuppressWarnings("Duplicates")
+    @SuppressWarnings({"Duplicates", "BlockingMethodInNonBlockingContext"})
     private void openHexOpacityPic(DataContext dataContext) {
         // 1. 获取 IDEA 正在使用的 Project
         Project currentProject = dataContext.getData(PlatformDataKeys.PROJECT);

@@ -4,13 +4,8 @@ import com.intellij.ide.DataManager;
 import com.intellij.notification.Notification;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.DataContext;
-import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.util.AsyncResult;
-import com.intellij.util.Consumer;
 import com.zeke.cd.images.OpenImageConsumer;
-import com.zeke.cd.utils.Utils;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -38,11 +33,9 @@ public class OpenImageAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        DataManager.getInstance()
-                .getDataContextFromFocus()
-                .doWhenDone((Consumer<DataContext>) (dataContext -> new OpenImageConsumer().accept(dataContext)))
-                .doWhenRejected(LOG::error);
-
+        DataManager.getInstance().getDataContextFromFocusAsync()
+                .onSuccess(dataContext -> new OpenImageConsumer().accept(dataContext))
+                .onError(LOG::error);
 
         // 使打开图片按钮失效，避免重复点击
         notification.expire();
