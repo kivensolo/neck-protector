@@ -4,13 +4,10 @@ import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.ui.ComponentWithBrowseButton.BrowseFolderActionListener;
 import com.intellij.openapi.ui.TextComponentAccessor;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
-import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.zeke.cd.notify.PluginDefaultConfig;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,6 +53,7 @@ public interface PluginSettingConfig {
                 textField, null,
                 PluginSettingConfig.IMAGE_FILE_CHOOSER,
                 TextComponentAccessor.TEXT_FIELD_WHOLE_TEXT) {
+            @SuppressWarnings("UnstableApiUsage")
             @NotNull
             @Override
             protected String chosenFileToResultingText(@NotNull VirtualFile chosenFile) {

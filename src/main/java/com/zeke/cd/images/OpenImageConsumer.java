@@ -31,6 +31,7 @@ public class OpenImageConsumer implements Consumer<DataContext> {
     public OpenImageConsumer() {
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void accept(DataContext dataContext) {
         // 1. 获取 IDEA 正在使用的 Project
