@@ -1,7 +1,7 @@
 package com.zeke.cd.service;
 
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
-import com.intellij.openapi.components.ServiceManager;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -20,7 +20,7 @@ public interface IConfigService extends PersistentStateComponent<ConfigState> {
 
     /** 由 Intellij Platform 保证的单例模式 */
     static IConfigService getInstance() {
-        return ServiceManager.getService(IConfigService.class);
+        return ApplicationManager.getApplication().getService(IConfigService.class);
     }
 
     /**
