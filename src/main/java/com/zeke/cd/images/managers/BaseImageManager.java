@@ -1,7 +1,7 @@
 package com.zeke.cd.images.managers;
 
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
-import com.intellij.ide.plugins.PluginManager;
+import com.intellij.ide.plugins.PluginManagerCore;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.extensions.PluginId;
 import com.zeke.cd.notify.PluginDefaultConfig;
@@ -92,7 +92,7 @@ public abstract class BaseImageManager implements ImageManager {
      */
     public static File getPluginFilePath() {
         PluginId pluginId = PluginId.getId(GlobalSettings.PLUGIN_ID);
-        IdeaPluginDescriptor plugin = PluginManager.getPlugin(pluginId);
+        IdeaPluginDescriptor plugin = PluginManagerCore.getPlugin(pluginId);
         if (plugin == null) {
             LOG.error("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
             throw new NullPointerException("fail to get plugin \"" + GlobalSettings.PLUGIN_ID + "\"");
