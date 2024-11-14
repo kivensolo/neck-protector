@@ -8,7 +8,6 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileEditor.ex.FileEditorManagerEx;
 import com.intellij.openapi.fileEditor.impl.EditorWindow;
-import com.intellij.openapi.fileEditor.impl.FileEditorOpenOptions;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -58,9 +57,7 @@ public class ShowOpacityTableAction extends AnAction {
                 currentWindow.split(SwingConstants.VERTICAL, true, image, true);
             } else {
                 // 4.2 在下一个 EditorWindow 打开图片
-                FileEditorOpenOptions fileEditorOpenOptions = new FileEditorOpenOptions();
-                fileEditorOpenOptions.withRequestFocus(true);
-                fileEditorManager.openFile(image, nextWindow, fileEditorOpenOptions);
+                fileEditorManager.openFile(image, true);
             }
         }
         LOG.info("hex image has been opened");

@@ -49,11 +49,12 @@ public interface PluginSettingConfig {
      * 图片选择器的监听事件
      */
     static BrowseFolderActionListener<JTextField> newBrowseFolderActionListener(TextFieldWithBrowseButton textField) {
+        // Begin 2024.3:
+        // BrowseFolderActionListener() scheduled for removal in a future release;
         return new BrowseFolderActionListener<JTextField>("Image URL", "Choose the picture you like",
                 textField, null,
                 PluginSettingConfig.IMAGE_FILE_CHOOSER,
                 TextComponentAccessor.TEXT_FIELD_WHOLE_TEXT) {
-            @SuppressWarnings("UnstableApiUsage")
             @NotNull
             @Override
             protected String chosenFileToResultingText(@NotNull VirtualFile chosenFile) {
