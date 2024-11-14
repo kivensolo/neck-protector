@@ -78,12 +78,11 @@ public interface INotifyStrategy {
         private static Logger LOG = Logger.getInstance(RemindIndirect.class);
         private NotificationGroup  notificationGroup;
         public RemindIndirect() {
-            String displayId = "toast_" + GlobalSettings.PLUGIN_NAME;
-            NotificationDisplayType displayType = NotificationDisplayType.STICKY_BALLOON;
-            //FIXEM   scheduled for removal API
-            notificationGroup = new NotificationGroup(displayId, displayType, true);
-            //TODO 如何注册displayId？
-            //notificationGroup = NotificationGroupManager.getInstance().getNotificationGroup(displayId);
+            NotificationGroupManager manager = NotificationGroupManager.getInstance();
+            if (manager == null) {
+                return;
+            }
+            notificationGroup = manager.getNotificationGroup(GlobalSettings.NOTIFICATION_GROUP_ID);
         }
 
         /**

@@ -20,4 +20,9 @@ public class GlobalSettings {
      * 插件打包后的 jar 包名称
      */
     public static final String JAR_NAME = "neck-protector-plugin.jar";
+
+    /**
+     * 插件的消息通知分组id，由扩展点定义
+     */
+    public static final String NOTIFICATION_GROUP_ID = "NeckProtector_NOTIFY";
 }

@@ -52,7 +52,7 @@
     <change-notes/>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="202"/>
+    <idea-version since-build="232"/>
 
     <!--应用级别组件-->
     <application-components>
@@ -85,6 +85,10 @@
          <!-- Declare the project level service -->
         <!--<projectService serviceInterface="Mypackage.MyProjectService"
                   serviceImplementation="Mypackage.MyProjectServiceImpl" />-->
+        <!-- 2020.3后, Notification的使用  key属性为可选的，表示在设置窗口中的显示名称 -->
+        <notificationGroup id="NeckProtector_NOTIFY"
+                           displayType="STICKY_BALLOON"
+                           key="notification.Zeke"/>
     </extensions>
 
     <actions>
