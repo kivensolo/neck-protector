@@ -40,7 +40,7 @@ public class SettingsPanelView {
      */
     private void initPicChoiceView() {
         imageUrlChoiceView = new TextFieldWithBrowseButton();
-        imageUrlChoiceView.addActionListener(PluginSettingConfig.newBrowseFolderActionListener(imageUrlChoiceView));
+        imageUrlChoiceView.addActionListener(LocalImageSelector.newImageActionListener(imageUrlChoiceView));
         imageUrlChoiceView.setVisible(false);
     }
 
