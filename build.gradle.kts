@@ -26,8 +26,9 @@ repositories {
 }
 
 intellij {
-    version.set("2024.3")
+    version.set("2023.2")
     type.set("IC")
+    plugins.set(listOf("com.intellij.java"))
 }
 
 java {
