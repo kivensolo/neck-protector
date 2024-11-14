@@ -1,7 +1,7 @@
 package com.zeke.cd.images;
 
 import com.google.gson.Gson;
-import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import com.zeke.cd.images.managers.DefaultImageManager;
 
 import java.net.MalformedURLException;
@@ -10,7 +10,7 @@ import java.net.URL;
 /**
  * ImageManagerTest
  */
-public class ImageManagerTest extends LightPlatformCodeInsightFixtureTestCase {
+public class ImageManagerTest extends BasePlatformTestCase {
 
     public void testGetDefaultInstance() {
         URL url = DefaultImageManager.getInstance().getImageUrl();

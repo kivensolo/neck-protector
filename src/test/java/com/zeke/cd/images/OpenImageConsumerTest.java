@@ -1,10 +1,9 @@
 package com.zeke.cd.images;
 
 import com.intellij.ide.DataManager;
-import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 
-@SuppressWarnings("UnstableApiUsage")
-public class OpenImageConsumerTest extends LightPlatformCodeInsightFixtureTestCase {
+public class OpenImageConsumerTest extends BasePlatformTestCase {
 
     public void testAccept() {
         DataManager.getInstance().getDataContextFromFocusAsync()
