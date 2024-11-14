@@ -72,7 +72,7 @@ public class OpenImageConsumer implements Consumer<DataContext> {
                 currentWindow.split(SwingConstants.VERTICAL, true, image, true);
             } else {
                 // 4.2 在下一个 EditorWindow 打开图片
-                fileEditorManager.openFileWithProviders(image, true, nextWindow);
+                fileEditorManager.openFile(image, true);
             }
         }
         LOG.info("image has been opened");
