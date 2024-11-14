@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.intellij")
 }
 
-ext.set("plugin_version","1.1.1_003")
+ext.set("plugin_version","1.1.3")
 
 repositories {
     maven("https://maven.aliyun.com/repository/central")
@@ -19,6 +19,7 @@ intellij {
 //    plugins.set(listOf(/* Plugin Dependencies */))
 //    val pluginList = listOf("java", "android", "Kotlin","IntelliLang")
 //    plugins.set(pluginList)
+    type.set("IC")
 }
 
 java.sourceSets.main {
@@ -46,8 +47,8 @@ tasks{
             <li>v1.0 Init.</li>
             <li>v1.1 Automatically update Bing image every day.</li>
             <li>v1.1.1 Fix bugs in version 1.1.</li>
-            <li>v1.1.202-211 Compiled with Java11 and Adjust IDEA compatibility range to 202-211.* .</li>
-            <li>v1.1.1_003 Adjust IDEA compatibility range to 2021.2(212.4746.92)-2022.2.*(222.*)</li>
+            <li>v1.1.2 Compiled with Java11 and Adjust Intellij Platform 202-211.* .</li>
+            <li>v1.1.3 Adjust Intellij Platform 2021.2(212.4746.92)-2022.2.*(222.*)</li>
           </ul>
           """)
     }
