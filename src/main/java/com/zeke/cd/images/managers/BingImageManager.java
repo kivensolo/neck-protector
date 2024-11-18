@@ -111,12 +111,14 @@ public class BingImageManager extends BaseImageManager {
                         LOG.info("Abnormal data");
                     }
                 } catch (Exception e) {
+                    LOG.error("requestBingImage onFinish. But has catch a exception=" + e.getMessage());
                     e.printStackTrace();
                 }
             }
 
             @Override
             public void onError(Exception e) {
+                LOG.error("requestBingImage onError:" + e.getMessage() + "; url="+url);
                 e.printStackTrace();
             }
         });
