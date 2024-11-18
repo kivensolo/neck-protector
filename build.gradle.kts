@@ -43,8 +43,8 @@ tasks{
             <li>v1.0 Init.</li>
             <li>v1.1 Automatically update Bing image every day.</li>
             <li>v1.1.1 Fix bugs in version 1.1.</li>
-            <li>v1.1.1_002 Compiled with Java11 and Adjust compatibility range to 202-211.* .</li>
-            <li>v1.1.1_003 Adjust compatibility range to 2021.2(212.4746.92)-2022.2.*(222.*)</li>
+            <li>v1.1.2 Compiled with Java11 and Adjust Intellij Platform 202-211.* .</li>
+            <li>v1.1.3 Adjust Intellij Platform 2021.2(212.4746.92)-2022.2.*(222.*)</li>
             <li>v1.1.4 Compiled with Java17 and Adjust compatibility range to 2022.1(221.5080.210)-2023.1.7(231.9423.9)</li>
           </ul>
           """)
