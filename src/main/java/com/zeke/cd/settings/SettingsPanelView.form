@@ -3,34 +3,34 @@
   <grid id="27dc6" binding="pluginSettingPanel" layout-manager="GridLayoutManager" row-count="10" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="27" width="622" height="284"/>
+      <xy x="20" y="27" width="622" height="324"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="c26b4" class="javax.swing.JLabel">
+      <component id="c26b4" class="javax.swing.JLabel" binding="remindModeLabel">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <labelFor value="9c3f4"/>
-          <text value="提醒方式(Reminder)："/>
+          <text value=""/>
         </properties>
       </component>
-      <component id="aca74" class="javax.swing.JLabel">
+      <component id="aca74" class="javax.swing.JLabel" binding="notifyContentLabel">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="内容文本(Content) ："/>
+          <text value=""/>
         </properties>
       </component>
-      <component id="4343b" class="javax.swing.JLabel">
+      <component id="4343b" class="javax.swing.JLabel" binding="notifyTitleLabel">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="标题文本(Title)："/>
+          <text value=""/>
         </properties>
       </component>
       <component id="4941a" class="javax.swing.JTextField" binding="periodMinutesView">
@@ -57,12 +57,12 @@
         </constraints>
         <properties/>
       </component>
-      <component id="a876" class="javax.swing.JLabel">
+      <component id="a876" class="javax.swing.JLabel" binding="notifyActionLabel">
         <constraints>
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="通知按钮(Notification button) ："/>
+          <text value=""/>
         </properties>
       </component>
       <component id="d5622" class="javax.swing.JTextField" binding="notifyActionView">
@@ -83,12 +83,12 @@
           <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="fed35" class="javax.swing.JLabel">
+      <component id="fed35" class="javax.swing.JLabel" binding="durationInMinutesLabel">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="提醒间隔(Reminder interval) Min :"/>
+          <text value=""/>
         </properties>
       </component>
       <hspacer id="aa150">
@@ -104,13 +104,13 @@
         </constraints>
         <properties/>
       </component>
-      <component id="7df5a" class="javax.swing.JLabel">
+      <component id="7df5a" class="javax.swing.JLabel" binding="pictureSourceLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <labelFor value="8cdc0"/>
-          <text value="图片源(Image source)："/>
+          <text value=""/>
         </properties>
       </component>
       <component id="17db9" class="com.intellij.openapi.ui.TextFieldWithBrowseButton" binding="imageUrlChoiceView" custom-create="true">
@@ -132,13 +132,13 @@
         </constraints>
         <properties/>
       </component>
-      <component id="86a00" class="javax.swing.JLabel">
+      <component id="86a00" class="javax.swing.JLabel" binding="notifySettingTitleLabel">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="YouYuan" size="18" style="1"/>
-          <text value="通知设置(Notification settings)"/>
+          <text value=""/>
         </properties>
       </component>
       <hspacer id="878b2">
@@ -146,13 +146,13 @@
           <grid row="3" column="1" row-span="1" col-span="4" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="e1b5b" class="javax.swing.JLabel">
+      <component id="e1b5b" class="javax.swing.JLabel" binding="pictureSettingTitleLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="YouYuan" size="18" style="1"/>
-          <text value="图片设置(Picture setting)"/>
+          <text value=""/>
         </properties>
       </component>
       <hspacer id="1e8b2">

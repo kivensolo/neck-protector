@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="setting.image.display.value.bing">必应图片</entry>
+    <entry key="setting.image.display.value.build_in">内置图片</entry>
+    <entry key="setting.image.display.value.local">本地图片</entry>
+    <entry key="setting.label.notify.content">内容文本：</entry>
+    <entry key="setting.label.notify.link.text">通知链接展示文字：</entry>
+    <entry key="setting.label.notify.title">标题文本：</entry>
+    <entry key="setting.main_title.notification">通知设置</entry>
+    <entry key="setting.label.notify.reminder.interval">提醒间隔(分钟)：</entry>
+    <entry key="setting.label.notify.mode">提醒方式：</entry>
+    <entry key="setting.main_title.image">图片设置</entry>
+    <entry key="setting.image.source">图片源：</entry>
+    <entry key="setting.notify.mode.tips">消息通知 -> 打开图片</entry>
+    <entry key="setting.notify.mode.directly">直接显示图片</entry>
+    <entry key="plugin.name">肩颈保护器</entry>
+    <entry key="notify.message.tltle">亲爱的牛马</entry>
+    <entry key="nofity.message.content">休息一下，活动活动脖子吧~</entry>
+    <entry key="notify.message.action_link">看看图片</entry>
+</properties>

@@ -4,6 +4,7 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.util.xmlb.annotations.OptionTag;
 import com.zeke.cd.images.managers.BaseImageManager;
 import com.zeke.cd.images.managers.CustomImageManager;
+import com.zeke.cd.lang.LanguageBundle;
 import com.zeke.cd.notify.PluginDefaultConfig;
 import com.zeke.cd.settings.SettingsPanelView;
 
@@ -46,17 +47,17 @@ public class ConfigState {
         /**
          * 使用插件自带默认图
          */
-        DEFAULT(0, "Built-in"),
+        DEFAULT(0, LanguageBundle.message(LanguageBundle.ID.SETTING_IMAGE_DISPLAY_VALUE_BUILD_IN)),
 
         /**
          * 使用Bing搜索的图片
          */
-        BING(1, "Bing"),
+        BING(1, LanguageBundle.message(LanguageBundle.ID.SETTING_IMAGE_DISPLAY_VALUE_BING)),
 
         /**
          * 自定义本地图片
          */
-        CUSTOM(2, "Select local image");
+        CUSTOM(2, LanguageBundle.message(LanguageBundle.ID.SETTING_IMAGE_DISPLAY_VALUE_LOCAL));
 
         private static Map<String, ImageSrcTypeEnum> stringToEnum = new HashMap<>();
 
@@ -98,11 +99,11 @@ public class ConfigState {
         /**
          * 直接打开图片
          */
-        DIRECT(0, "直接显示图片(Display pictures directly)"),
+        DIRECT(0, LanguageBundle.message(LanguageBundle.ID.SETTING_NOTIFY_MODE_DIRECTLY)),
         /**
          * 间接打开图片
          */
-        INDIRECT(1, "消息通知(Message notification) -> 打开图片(open image)");
+        INDIRECT(1, LanguageBundle.message(LanguageBundle.ID.SETTING_NOTIFY_MODE_TIPS));
 
         public final int index;
         public final String description;

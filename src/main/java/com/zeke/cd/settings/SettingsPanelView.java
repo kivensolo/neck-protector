@@ -2,6 +2,8 @@ package com.zeke.cd.settings;
 
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
+import com.intellij.ui.components.JBLabel;
+import com.zeke.cd.lang.LanguageBundle;
 import com.zeke.cd.notify.PluginDefaultConfig;
 import com.zeke.cd.service.ConfigState;
 import com.zeke.cd.service.IConfigService;
@@ -21,6 +23,25 @@ public class SettingsPanelView {
     private JComboBox<String> imageSrcTypeBox;
     private JComboBox<String> remindTypeOptionsView;
     private TextFieldWithBrowseButton imageUrlChoiceView;
+
+// <editor-fold defaultstate="collapsed" desc="Form key widgets">
+    private JLabel pictureSettingTitleLabel;
+    private JLabel pictureSourceLabel;
+
+    private JLabel notifySettingTitleLabel;
+
+    private JLabel remindModeLabel;
+
+    private JLabel durationInMinutesLabel;
+
+    private JLabel notifyTitleLabel;
+
+    private JLabel notifyContentLabel;
+
+    private JLabel notifyActionLabel;
+
+// </editor-fold>
+
     private JTextField periodMinutesView;
     private JTextField notifyTitleView;
     private JTextField notifyContentView;
@@ -33,6 +54,30 @@ public class SettingsPanelView {
         initRemindTypeView();
         initImageSrcTypeView();
         initPicChoiceView();
+        initOtherMultiLanguageUI();
+    }
+
+    private void initOtherMultiLanguageUI(){
+        //==== Picture Setting ====
+        String picSettingTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_MAIN_TITLE_OF_IMAGE);
+        pictureSettingTitleLabel = new JLabel(picSettingTitle);
+        String picSourceTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_IMAGE_SOURCE);
+        pictureSourceLabel = new JLabel(picSourceTitle);
+
+        //==== Notification Setting ====
+        String notifySettingTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_MAIN_TITLE_OF_NOTIFICATION);
+        notifySettingTitleLabel = new JBLabel(notifySettingTitle);
+        String remindModeTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_LABEL_NOTIFY_MODE);
+        remindModeLabel = new JBLabel(remindModeTitle);
+        String intervalTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_LABEL_NOTIFY_REMINDER_INTERVAL);
+        durationInMinutesLabel = new JBLabel(intervalTitle);
+
+        String notifyTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_LABEL_NOTIFY_TITLE);
+        notifyTitleLabel = new JBLabel(notifyTitle);
+        String notifyContent = LanguageBundle.message(LanguageBundle.ID.SETTING_LABEL_NOTIFY_CONTENT);
+        notifyContentLabel = new JBLabel(notifyContent);
+        String notifyAction = LanguageBundle.message(LanguageBundle.ID.SETTING_LABEL_NOTIFY_LINK_TEXT);
+        notifyActionLabel = new JBLabel(notifyAction);
     }
 
     /**

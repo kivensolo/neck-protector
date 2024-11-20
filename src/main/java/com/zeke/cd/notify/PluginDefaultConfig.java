@@ -1,6 +1,7 @@
 package com.zeke.cd.notify;
 
 import com.zeke.cd.images.managers.DefaultImageManager;
+import com.zeke.cd.lang.LanguageBundle;
 import com.zeke.cd.service.ConfigState;
 
 import java.util.concurrent.TimeUnit;
@@ -30,11 +31,11 @@ public class PluginDefaultConfig {
     public static Integer PERIOD_MINUTES = (int) TimeUnit.HOURS.toMinutes(1);
 
     /** 默认通知文案的标题 */
-    public static String NOTIFY_TITLE = "NeckProtector";
+    public static String NOTIFY_TITLE = LanguageBundle.message(LanguageBundle.ID.NOTIFY_MESSAGE_TITLE);
 
     /** 默认通知文案的内容 */
-    public static  String NOTIFY_CONTENT = "Take a rest! Be careful with cervical spondylosis~";
+    public static  String NOTIFY_CONTENT = LanguageBundle.message(LanguageBundle.ID.NOTIFY_MESSAGE_CONTENT);
 
     /** 默认通知文案的按钮 */
-    public static  String NOTIFY_ACTION = "See picture and relax";
+    public static  String NOTIFY_ACTION = LanguageBundle.message(LanguageBundle.ID.NOTIFY_MESSAGE_ACTION_TEXT);
 }
