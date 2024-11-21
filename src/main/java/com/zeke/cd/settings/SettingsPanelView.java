@@ -27,25 +27,21 @@ public class SettingsPanelView {
 // <editor-fold defaultstate="collapsed" desc="Form key widgets">
     private JLabel pictureSettingTitleLabel;
     private JLabel pictureSourceLabel;
-
     private JLabel notifySettingTitleLabel;
-
     private JLabel remindModeLabel;
-
     private JLabel durationInMinutesLabel;
-
     private JLabel notifyTitleLabel;
-
     private JLabel notifyContentLabel;
-
     private JLabel notifyActionLabel;
-
 // </editor-fold>
 
+
+// <editor-fold defaultstate="collapsed" desc="Form value widgets">
     private JTextField periodMinutesView;
     private JTextField notifyTitleView;
     private JTextField notifyContentView;
     private JTextField notifyActionView;
+// </editor-fold>
 
     public SettingsPanelView() {
     }
@@ -60,15 +56,16 @@ public class SettingsPanelView {
     private void initOtherMultiLanguageUI(){
         //==== Picture Setting ====
         String picSettingTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_MAIN_TITLE_OF_IMAGE);
-        pictureSettingTitleLabel = new JLabel(picSettingTitle);
+        this.pictureSettingTitleLabel = new JLabel(picSettingTitle);
         String picSourceTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_IMAGE_SOURCE);
-        pictureSourceLabel = new JLabel(picSourceTitle);
+        this.pictureSourceLabel = new JLabel(picSourceTitle);
 
         //==== Notification Setting ====
         String notifySettingTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_MAIN_TITLE_OF_NOTIFICATION);
         notifySettingTitleLabel = new JBLabel(notifySettingTitle);
         String remindModeTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_LABEL_NOTIFY_MODE);
         remindModeLabel = new JBLabel(remindModeTitle);
+
         String intervalTitle = LanguageBundle.message(LanguageBundle.ID.SETTING_LABEL_NOTIFY_REMINDER_INTERVAL);
         durationInMinutesLabel = new JBLabel(intervalTitle);
 

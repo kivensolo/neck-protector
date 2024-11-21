@@ -4,7 +4,6 @@
     <id>com.zeke.wong.neck-protect</id>
     <name>NeckProtector</name>
     <version>1.1.1</version>
-    <resource-bundle>lang.SettingsBundle</resource-bundle>
 
     <vendor email="760553478@qq.com" url="https://github.com/kivensolo">GitHub</vendor>
 

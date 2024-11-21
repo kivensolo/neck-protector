@@ -6,7 +6,7 @@ extra["javaVersion"] = "17"
 
 extra["mPluginName"] = "NeckProtector"
 extra["mPluginId"] = "com.zeke.wong.neck-protect"
-extra["mPluginVersion"] = "1.1.5"
+extra["mPluginVersion"] = "1.1.6"
 
 // 2023.1 or higher
 extra["since"] = "232"

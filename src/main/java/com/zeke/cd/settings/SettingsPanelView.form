@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.zeke.cd.settings.SettingsPanelView">
-  <grid id="27dc6" binding="pluginSettingPanel" layout-manager="GridLayoutManager" row-count="10" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="pluginSettingPanel" layout-manager="GridLayoutManager" row-count="10" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="27" width="622" height="324"/>
@@ -8,29 +8,28 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="c26b4" class="javax.swing.JLabel" binding="remindModeLabel">
+      <component id="c26b4" class="javax.swing.JLabel" binding="remindModeLabel" custom-create="true">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <labelFor value="9c3f4"/>
-          <text value=""/>
         </properties>
       </component>
-      <component id="aca74" class="javax.swing.JLabel" binding="notifyContentLabel">
+      <component id="aca74" class="javax.swing.JLabel" binding="notifyContentLabel" custom-create="true">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value=""/>
+          <labelFor value="84965"/>
         </properties>
       </component>
-      <component id="4343b" class="javax.swing.JLabel" binding="notifyTitleLabel">
+      <component id="4343b" class="javax.swing.JLabel" binding="notifyTitleLabel" custom-create="true">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value=""/>
+          <labelFor value="71bca"/>
         </properties>
       </component>
       <component id="4941a" class="javax.swing.JTextField" binding="periodMinutesView">
@@ -57,12 +56,12 @@
         </constraints>
         <properties/>
       </component>
-      <component id="a876" class="javax.swing.JLabel" binding="notifyActionLabel">
+      <component id="a876" class="javax.swing.JLabel" binding="notifyActionLabel" custom-create="true">
         <constraints>
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value=""/>
+          <labelFor value="d5622"/>
         </properties>
       </component>
       <component id="d5622" class="javax.swing.JTextField" binding="notifyActionView">
@@ -83,12 +82,12 @@
           <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="fed35" class="javax.swing.JLabel" binding="durationInMinutesLabel">
+      <component id="fed35" class="javax.swing.JLabel" binding="durationInMinutesLabel" custom-create="true">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value=""/>
+          <labelFor value="4941a"/>
         </properties>
       </component>
       <hspacer id="aa150">
@@ -104,13 +103,12 @@
         </constraints>
         <properties/>
       </component>
-      <component id="7df5a" class="javax.swing.JLabel" binding="pictureSourceLabel">
+      <component id="7df5a" class="javax.swing.JLabel" binding="pictureSourceLabel" custom-create="true">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <labelFor value="8cdc0"/>
-          <text value=""/>
         </properties>
       </component>
       <component id="17db9" class="com.intellij.openapi.ui.TextFieldWithBrowseButton" binding="imageUrlChoiceView" custom-create="true">
@@ -132,13 +130,12 @@
         </constraints>
         <properties/>
       </component>
-      <component id="86a00" class="javax.swing.JLabel" binding="notifySettingTitleLabel">
+      <component id="86a00" class="javax.swing.JLabel" binding="notifySettingTitleLabel" custom-create="true">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="YouYuan" size="18" style="1"/>
-          <text value=""/>
         </properties>
       </component>
       <hspacer id="878b2">
@@ -146,13 +143,12 @@
           <grid row="3" column="1" row-span="1" col-span="4" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="e1b5b" class="javax.swing.JLabel" binding="pictureSettingTitleLabel">
+      <component id="e1b5b" class="javax.swing.JLabel" binding="pictureSettingTitleLabel" custom-create="true">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="YouYuan" size="18" style="1"/>
-          <text value=""/>
         </properties>
       </component>
       <hspacer id="1e8b2">
