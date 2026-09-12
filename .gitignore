@@ -1,0 +1,23 @@
+# Gradle 缓存与构建产物
+.gradle/
+build/
+local.properties
+
+# IntelliJ IDEA / IDE 配置
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# IntelliJ 插件开发沙箱（intellij 插件 runIde/调试时生成）
+intellij-sandbox/
+
+# ZCode 工作区配置
+.zcode/
+
+# 系统与杂项
+.DS_Store
+Thumbs.db
+*.log
+*.hprof
